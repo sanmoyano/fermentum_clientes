@@ -16,6 +16,7 @@ class Cerveza {
             const descuento = 30
             saldo -= (saldo * descuento)/100
             console.log (`Tenes un descuento del %${descuento} por llevar 200 litros o mas de ${this.nombre}. El saldo a pagar es $${saldo}`)
+            return this.pedido
         }
     }
 }
@@ -34,9 +35,9 @@ const juicy = new Cerveza ("Juicy IPA", 20, 6.6, 220, 800)
 //array donde cargo todo los estilos de cervezas
 let estilos = [golden, scotch, strong, apa, aaa, session, american, caramel, juicy]
 
-//funcion stock total 
-let litrosEnFabrica =   golden.stock + scotch.stock + strong.stock + apa.stock + aaa.stock + session.stock + american.stock + caramel.stock + juicy.stock
-console.log (litrosEnFabrica)
+//variable stock total en fabrica 
+let litrosEnFabrica = golden.stock + scotch.stock + strong.stock + apa.stock + aaa.stock + session.stock + american.stock + caramel.stock + juicy.stock
+console.log (`Litros en fabrica: ${litrosEnFabrica}`)
 
 // funcion consulta stock 
 function consultarStock () {
@@ -80,15 +81,15 @@ function pedirEstilo () {
             alert ("Por favor ingresa un estilo.")
         }
         var seguirComprando = prompt ("Desea seguir comprando? Y/N")
-    } while (seguirComprando == "y")
+    } while (seguirComprando == "y" && litrosEnFabrica != 0)
+    if (litrosEnFabrica == 0) {
+        alert ("Nos quedamos sin stock")
+    } else {
+        alert ("Gracias por su compra.")
+    }
 }
 
-//funcion sumar saldo 
-function saldoTotal () {
-    let saldoPagar = 
-    alert (`El saldo a pagar es $${saldoPagar}`)
-}
+//ejecucion del codigo
 consultarStock ()
 pedirEstilo ()
-saldoTotal ()
 
