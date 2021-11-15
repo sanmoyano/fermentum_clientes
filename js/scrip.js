@@ -18,26 +18,41 @@ class Cerveza {
             console.log (`Tenes un descuento del %${descuento} por llevar 200 litros o mas de ${this.nombre}. El saldo a pagar es $${saldo}`)
         }
     }
-    controlStock () {
-        acumuladorStock += this.stock
-    }
-    totalPagar () {
-        acumuladorSaldo += saldo
-    }
 }
+
 //instancias del objeto
-const golden = new Cerveza ("Golden", 16, 4.6, 110, 1000)
+const golden = new Cerveza ("Golden", 16, 4.6, 110, 2000)
 const scotch = new Cerveza ("Scotch", 18, 4.6, 110, 1000)
-const strong = new Cerveza ("Strong", 24, 7.4, 130, 1000)
-const apa = new Cerveza ("APA", 28, 5.5, 145, 1000)
-const aaa = new Cerveza ("AAA", 26, 5.5,  145, 1000)
-const session = new Cerveza ("Session IPA", 32, 4.0, 145, 1000)
-const american = new Cerveza ("American IPA", 54, 6.4, 160, 1000)
-const caramel = new Cerveza ("Caramel IPA", 52, 6.2, 160, 1000)
-const juicy = new Cerveza ("Juicy IPA", 20, 6.6, 220, 1000)
+const strong = new Cerveza ("Strong", 24, 7.4, 130, 500)
+const apa = new Cerveza ("APA", 28, 5.5, 145, 1300)
+const aaa = new Cerveza ("AAA", 26, 5.5,  145, 1500)
+const session = new Cerveza ("Session IPA", 32, 4.0, 145, 1500)
+const american = new Cerveza ("American IPA", 54, 6.4, 160, 2500)
+const caramel = new Cerveza ("Caramel IPA", 52, 6.2, 160, 1200)
+const juicy = new Cerveza ("Juicy IPA", 20, 6.6, 220, 800)
 
 //array donde cargo todo los estilos de cervezas
 let estilos = [golden, scotch, strong, apa, aaa, session, american, caramel, juicy]
+
+//funcion stock total 
+let litrosEnFabrica =   golden.stock + scotch.stock + strong.stock + apa.stock + aaa.stock + session.stock + american.stock + caramel.stock + juicy.stock
+console.log (litrosEnFabrica)
+
+// funcion consulta stock 
+function consultarStock () {
+    let consulta = prompt ("Bienvenido. Desea consultar el stock de nuestras cervezas? Y/N").toLowerCase ()
+    if (consulta == "y") {
+        alert (`Tenemos de todo:    golden ${golden.stock} litros
+                                    soctch ${scotch.stock} litros
+                                    strong ${strong.stock} litros
+                                    apa ${apa.stock} litros
+                                    aaa ${aaa.stock} litros
+                                    session ${session.stock} litros
+                                    american ${american.stock} litros
+                                    caramel ${caramel.stock} litros
+                                    juicy ${juicy.stock} litros`)
+    }
+}
 
 //funcion ciclo para pedir estilo 
 function pedirEstilo () {
@@ -61,10 +76,19 @@ function pedirEstilo () {
             caramel.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
         } else if (estiloPedido == "juicy") {
             juicy.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else {
+            alert ("Por favor ingresa un estilo.")
         }
         var seguirComprando = prompt ("Desea seguir comprando? Y/N")
     } while (seguirComprando == "y")
 }
-pedirEstilo ()
 
-// funcion consultar stock 
+//funcion sumar saldo 
+function saldoTotal () {
+    let saldoPagar = 
+    alert (`El saldo a pagar es $${saldoPagar}`)
+}
+consultarStock ()
+pedirEstilo ()
+saldoTotal ()
+
