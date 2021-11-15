@@ -7,7 +7,7 @@ class Cerveza {
         this.precio = precio    
         this.stock = stock
     }
-    //Metodos
+    
     pedido (litrosPedidos) { 
         let saldo =  this.precio * litrosPedidos
         console.log (`El litro de ${this.nombre} cuesta $${this.precio}. Estas llevando ${litrosPedidos} de litros. El saldo a pagar es $${saldo}`)
@@ -19,13 +19,12 @@ class Cerveza {
         }
     }
     controlStock () {
-        acumuladorStock += this.precio
+        acumuladorStock += this.stock
     }
-    total () {
+    totalPagar () {
         acumuladorSaldo += saldo
     }
 }
-
 //instancias del objeto
 const golden = new Cerveza ("Golden", 16, 4.6, 110, 1000)
 const scotch = new Cerveza ("Scotch", 18, 4.6, 110, 1000)
@@ -40,3 +39,32 @@ const juicy = new Cerveza ("Juicy IPA", 20, 6.6, 220, 1000)
 //array donde cargo todo los estilos de cervezas
 let estilos = [golden, scotch, strong, apa, aaa, session, american, caramel, juicy]
 
+//funcion ciclo para pedir estilo 
+function pedirEstilo () {
+    do {
+        let estiloPedido = prompt ("Selecciona alguno de nuestros 9 estilos: golden, scotch, strong, apa, aaa, caramel, american, session, juicy").toLowerCase ()
+        if (estiloPedido == "golden") {
+            golden.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "scotch") {
+            scotch.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "strong") {
+            strong.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "apa") {
+            apa.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "aaa") {
+            aaa.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "session") {
+            session.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "american") {
+            american.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "caramel") {
+            caramel.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        } else if (estiloPedido == "juicy") {
+            juicy.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))) 
+        }
+        var seguirComprando = prompt ("Desea seguir comprando? Y/N")
+    } while (seguirComprando == "y")
+}
+pedirEstilo ()
+
+// funcion consultar stock 
