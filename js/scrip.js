@@ -1,127 +1,72 @@
-//CLASE PADRE
-class Cerveza {
-    constructor (nombre, ibu, alcohol, precio, stock) {
-        this.nombre = nombre
-        this.ibu = ibu
-        this.alcohol = alcohol
-        this.precio = precio    
-        this.stock = stock 
+// clase producto
+class Cerveza { 
+    constructor (nombre, ibu, alcohol, precio, barril1,barril2,barril3,barril4, stock) {
+        this.nombre = nombre; 
+        this.ibu = ibu;
+        this.alcohol = alcohol; 
+        this.precio = precio;
+        this.barril1 = barril1;
+        this.barril2 = barril2;
+        this.barril3 = barril3;
+        this.barril4 = barril4;
+        this.stock = stock;
     }
-    pedido (litrosPedidos) {
-        let saldo = this.precio * litrosPedidos
-        const descuento = 10
-        
-        if ((litrosPedidos >= 30) || (saldo >= 5000)) {
-            saldo -= (saldo * descuento)/100
-            //mensaje al admin
-            console.log (`El cliente pidio ${litrosPedidos} litros de ${this.nombre}. Tiene descuento y debe abonar $${saldo}`)
-            //mensaje al usuario
-            alert (`Tenes un descuento del %${descuento} por llevar mas de 200 litros o superar el monto de $5000 de ${this.nombre}. El saldo a pagar es $${saldo}`)
-        } else {
-            //mensaje al admin
-            console.log (`El cliente pidio ${litrosPedidos} litros de ${this.nombre}. Debe abonar $${saldo}`)
-            //mensaje al usuario
-            alert (`El litro de ${this.nombre} cuesta $${this.precio}. Estas llevando ${litrosPedidos} de litros. El saldo a   pagar es $${saldo}`)
-        }
-        return (saldo)
-        
-    }
-    totalApagar (saldo) {
-        let saldoTotal = saldo
-        acumuladorSaldo += saldoTotal
-    }
-    stockControl (litrosPedidos) {
-        let stockFinal = this.stock - litrosPedidos
-        //mensaje admin
-        console.log (`Quedan ${stockFinal} litros de ${this.nombre}`)
-    }
-    retornarDatos () {
-        return `
-            ${this.nombre},
-            ${this.ibu},
-            ${this.alcohol},
-            ${this.precio},
-            ${this.stock}.
-        `
-    }
+    //metodos 
+
 }
 
-let acumuladorSaldo = 0
-let acumuladorStock = 0
-let litrosEnFabrica = 1500000
+// class Barril {
+//     constructor (litros) {
+//         this.litros = litros;
+//     }
+// }
 
-//INSTANCIAS DEL OBJETO
-const golden = new Cerveza ("Golden", 16, 4.6, 110, 2000)
-const scotch = new Cerveza ("Scotch", 18, 4.6, 110, 1000)
-const strong = new Cerveza ("Strong", 24, 7.4, 130, 500)
-const apa = new Cerveza ("APA", 28, 5.5, 145, 1300)
-const aaa = new Cerveza ("AAA", 26, 5.5,  145, 1500)
-const session = new Cerveza ("Session IPA", 32, 4.0, 145, 1500)
-const american = new Cerveza ("American IPA", 54, 6.4, 160, 2500)
-const caramel = new Cerveza ("Caramel IPA", 52, 6.2, 160, 1200)
-const juicy = new Cerveza ("Juicy IPA", 20, 6.6, 220, 800)
+//instancias de objeto - cerveza
+const cerveza1 = new Cerveza ("Golden", 16, 4.6, 110, 10, 20, 30, 50, 1000);
+const cerveza2 = new Cerveza ("Scotch", 18, 4.6, 110, 10, 20, 30, 50, 1000);
+const cerveza3 = new Cerveza ("Strong", 24, 7.4, 130, 10, 20, 30, 50, 1000);
+const cerveza4 = new Cerveza ("APA", 28, 5.5, 145, 10, 20, 30, 50, 1000);
+const cerveza5 = new Cerveza ("AAA", 26, 5.5, 145, 10, 20, 30, 50, 1000);
+const cerveza6 = new Cerveza ("Session IPA", 32, 4.0, 145, 10, 20, 30, 50, 1000);
+const cerveza7 = new Cerveza ("Caramel IPA", 52, 6.2, 160, 10, 20, 30, 50, 1000);
+const cerveza8 = new Cerveza ("American IPA", 52, 6.4, 160, 10, 20, 30, 50, 1000);
+const cerveza9 = new Cerveza ("Juicy IPA", 16, 6.6, 220, 10, 20, 30, 50, 1000);
 
+// //instancia de objeto - barril 
+// const barril1 = new Barril (10);
+// const barril2 = new Barril (20);
+// const barril3 = new Barril (30);
+// const barril4 = new Barril (50);
 
-//ARRAY - CATALOGO DE ESTILOS
-const catalogo = [golden, scotch, strong, apa, aaa, session, american, caramel, juicy]
+// //barriles
+// let barriles = [barril1,barril2,barril3,barril4];
+
+// catalogo 
+let catalogo = [cerveza1,cerveza2,cerveza3,cerveza4,cerveza5,cerveza6,cerveza7,cerveza8,cerveza9];
 console.log (catalogo)
 
-//consultar catalogo
-function consultarCatalogo () {
-    for (let i = 0; i < catalogo.length; i++) {
-        alert (`Bienvenido, este es nuestro catalogo: ${catalogo[i].nombre}, $${catalogo[i].precio} por litro`)
-    }
-}
+//subir catalogo
+let card_cerveza = document.getElementById ('card_cerveza');
 
-function acumuladorDeStock () {
-    for (let i = 0; i < catalogo.length; i++) {
-        acumuladorStock += catalogo[i].stock
-        return (acumuladorStock)
-    }
-}
-
-//ciclo de compra
-function pedirEstilo () {
-    consultarCatalogo ()
-    do {
-        let estiloPedido = prompt ("Selecciona alguno de nuestros 9 estilos: golden, scotch, strong, apa, aaa, caramel, american, session, juicy").toLowerCase ()
-        if (estiloPedido == "golden") {
-            golden.totalApagar (golden.pedido(parseInt(prompt("Ingresa la cantidad de litros deseada"))))
-        } else if (estiloPedido == "scotch") {
-            scotch.totalApagar (scotch.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada.")))) 
-        } else if (estiloPedido == "strong") {
-            strong.totalApagar (strong.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada."))))
-        } else if (estiloPedido == "apa") {
-            apa.totalApagar (apa.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada.")))) 
-        } else if (estiloPedido == "aaa") {
-            aaa.totalApagar (aaa.pedido (parseInt(prompt("Ingresa la cantidad de litros deseada.")))) 
-        } else if (estiloPedido == "session") {
-            session.totalApagar (session.pedido(parseInt(prompt("Ingresa la cantidad de litros deseada."))))
-        } else if (estiloPedido == "american") {
-            american.totalApagar (american.pedido(parseInt(prompt("Ingresa la cantidad de litros deseada."))))
-        } else if (estiloPedido == "caramel") {
-            caramel.totalApagar (caramel.pedido(parseInt(prompt("Ingresa la cantidad de litros deseada."))))
-        } else if (estiloPedido == "juicy") {
-            juicy.totalApagar (juicy.pedido(parseInt(prompt("Ingresa la cantidad de litros deseada.")))) 
-        } else {
-            alert ("Por favor ingresa un estilo.")
-        }
-        var seguirComprando = prompt ("Desea seguir comprando? Y/N")
-    } while ((seguirComprando != "n") && (litrosEnFabrica !=0))
-    if (litrosEnFabrica == "0") {
-        alert ("Nos quedamos sin stock") 
-    } else {
-        //mensaje al usuario
-        alert (`Gracias por su compra, el saldo a pagar es $${acumuladorSaldo}`)
-        //mensaje al admin
-        console.log (`Ingreso una compra por $${acumuladorSaldo}`)
-    }
-}
-
-//LLAMADO AL PROGRAMA
-acumuladorDeStock ()
-pedirEstilo ()
-
-
-
-
+catalogo.forEach ((cerveza, indice) => {
+    card_cerveza.innerHTML += `
+    <div class="card" id="cerveza ${indice + 1}" style="width: 18rem;">
+            <img src="./images/cerveza${indice +1}.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h4 class="card-text">${cerveza.nombre}</h4>
+            <h5 class="card-text">IBU: ${cerveza.ibu}</h5>
+            <h5 class="card-text">Alcohol: ${cerveza.alcohol}</h5>
+            <h5 class="card-text">Precio por litro: $${cerveza.precio}</h5>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-bottom: 10px;">Seleccionar barril</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">${cerveza.barril1}</a></li>
+                    <li><a class="dropdown-item" href="#">${cerveza.barril2}</a></li>
+                    <li><a class="dropdown-item" href="#">${cerveza.barril3}</a></li>
+                    <li><a class="dropdown-item" href="#">${cerveza.barril4}</a></li>
+                </ul>
+            </div>
+            <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+    </div>`
+})
