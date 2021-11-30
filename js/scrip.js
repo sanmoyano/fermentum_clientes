@@ -7,7 +7,12 @@ class Cerveza {
         this.precio = precio;
         this.stock = stock;
     }    
+
     // metodos 
+    barrilSelect () {
+        
+    }
+
     devDatos () {
         return `${this.nombre} - ${this.ibu} - ${this.alcohol} - ${this.precio} - ${this.stock}`
     }
@@ -24,23 +29,16 @@ const cerveza7 = new Cerveza ("Caramel IPA", 52, 6.2, 160, 1000);
 const cerveza8 = new Cerveza ("American IPA", 52, 6.4, 160, 1000);
 const cerveza9 = new Cerveza ("Juicy IPA", 16, 6.6, 220, 10, 1000);
 
-// catalogo 
+// array con todo los estilos de cerveza
 let catalogo = [cerveza1,cerveza2,cerveza3,cerveza4,cerveza5,cerveza6,cerveza7,cerveza8,cerveza9];
-// console.log (catalogo)
 
-//carrito 
-let carrito = []
+//subir el array de estilos al local storage 
+localStorage.setItem('catalogo cervezas', JSON.stringify(catalogo))
 
-//subir al local storage 
-function saveLocal () {
-    let aJson = JSON.stringify (catalogo)
-    localStorage.setItem ("cervezas", aJson)
-}
-saveLocal ()
-
-
-//subir catalogo
+//variable para manejar los div de las cervezas
 let card_cerveza = document.getElementById ('card_cerveza');
+
+//recorrer el array y subir las cards al html
 catalogo.forEach ((cerveza, indice) => {
     card_cerveza.innerHTML += `
     <div class="card" id="cerveza ${indice + 1}" style="width: 18rem;">
@@ -60,18 +58,35 @@ catalogo.forEach ((cerveza, indice) => {
                     <li><a class="dropdown-item" href="#">50</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-primary" id="boton_agregar ${indice + 1}">Agregar al carrito</button>
+            <button type="submit" class="btn btn-primary" id="boton_agregar ${cerveza.nombre}">Agregar al carrito</button>
         </div>
     </div>`
     
-    let btn_agregar = document.getElementById (`boton_agregar ${indice + 1}`);
-    btn_agregar.addEventListener ('submit', (e) => {
-        e.preventDefault ()
-
-    })
-
+    
 })
 
+//array carrito, guardo nombre y precio de la cerveza
+let carrito = []
+//subir el array del carrito al local storage vacio
+localStorage.setItem('carrito cervezas',JSON.stringify(carrito))
+
+//acumulador de precio para mostrar el total a pagar
+let acumPrecio = 0
+
+//funcion boton agregar al carrito
+for (let cerveza of catalogo) {  // recorro el catalogo con todos los estilos
+    
+    function agregarCerveza () { //funcion agregar cerveza al carrito
+        carrito.push(cerveza)//pusheo toda la card del estilo al array carrito (por ahora) 
+        localStorage.setItem('carrito cervezas', JSON.stringify(carrito)) //envio toda la card del estilo seleccionado al carrito en el local storage
+    }
+    /*function sumarPrecio () {
+        acumPrecio += cerveza.precio
+    }*/
+
+    let boton_agregar = document.getElementById (`boton_agregar ${cerveza.nombre}`) //variable del boton
+    boton_agregar.addEventListener ('click', agregarCerveza)//evento agregar al carrito
+}
 
 
 
@@ -81,24 +96,3 @@ catalogo.forEach ((cerveza, indice) => {
 
 
 
-
-
-
-
-
-
-// let acumuladorTotal = 0
-
-// for (let cerveza of catalogo) {
-//     const btnAgregar = document.getElementById (`boton ${cerveza.precio}`);
-//     // console.log (btnAgregar);
-
-//     let total = document.getElementById (`cerveza ${cerveza.precio}`);
-//     btnAgregar.onclick = function () {
-//         total += cerveza.precio;
-//         alert (`Se agrego al carrito ${cerveza.nombre}`)
-//         console.log (`Se agrego al carrito ${cerveza.nombre} a ${total}`);
-
-//         return total;
-//     }
-// }
