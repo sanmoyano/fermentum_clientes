@@ -27,7 +27,7 @@ const cerveza5 = new Cerveza ("AAA", 26, 5.5, 145, 1000);
 const cerveza6 = new Cerveza ("Session IPA", 32, 4.0, 145, 1000);
 const cerveza7 = new Cerveza ("Caramel IPA", 52, 6.2, 160, 1000);
 const cerveza8 = new Cerveza ("American IPA", 52, 6.4, 160, 1000);
-const cerveza9 = new Cerveza ("Juicy IPA", 16, 6.6, 220, 10, 1000);
+const cerveza9 = new Cerveza ("Juicy IPA", 16, 6.6, 220, 1000);
 
 // array con todo los estilos de cerveza
 let catalogo = [cerveza1,cerveza2,cerveza3,cerveza4,cerveza5,cerveza6,cerveza7,cerveza8,cerveza9];
@@ -65,34 +65,59 @@ catalogo.forEach ((cerveza, indice) => {
     
 })
 
-//array carrito, guardo nombre y precio de la cerveza
+//array carrito, guardo toda la card
 let carrito = []
 //subir el array del carrito al local storage vacio
 localStorage.setItem('carrito cervezas',JSON.stringify(carrito))
 
 //acumulador de precio para mostrar el total a pagar
-let acumPrecio = 0
+// let acumPrecio = 0
 
 //funcion boton agregar al carrito
 for (let cerveza of catalogo) {  // recorro el catalogo con todos los estilos
     
-    function agregarCerveza () { //funcion agregar cerveza al carrito
-        carrito.push(cerveza)//pusheo toda la card del estilo al array carrito (por ahora) 
-        localStorage.setItem('carrito cervezas', JSON.stringify(carrito)) //envio toda la card del estilo seleccionado al carrito en el local storage
-    }
-    /*function sumarPrecio () {
-        acumPrecio += cerveza.precio
-    }*/
-
     let boton_agregar = document.getElementById (`boton_agregar ${cerveza.nombre}`) //variable del boton
     boton_agregar.addEventListener ('click', agregarCerveza)//evento agregar al carrito
+    
+    function agregarCerveza () { //funcion agregar cerveza al carrito
+        carrito.push(cerveza.nombre)//pusheo toda la card del estilo al array carrito (por ahora) 
+        localStorage.setItem('carrito cervezas', JSON.stringify(carrito)) //envio toda la card del estilo seleccionado al carrito en el local storage
+        console.log(carrito)
+        alert ("Haz agregado un estilo")
+
+    }
+}
+
+//variable boton para mostrar el carrito
+let botonCarrito = document.getElementById ('btn_carrito')
+//variable del div donde voy a insertar el html del carrito
+let divCarrito = document.getElementById ('card_carrito')
+
+botonCarrito.onclick = () => {
+    divCarrito.innerHTML += `
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">${carrito}</h5>
+            <button type="submit" class="btn btn-danger" id="boton_eliminar">Eliminar</button>
+        </div>
+    </div>`
+    
 }
 
 
+// document.getElementById('btn_carrito').addEventListener ('click', () => {
+//     let carritoParseado = JSON.parse(localStorage.getItem(carrito))
 
+//     carritoParseado.forEach ((estilo, indice) =>  {
+//         divCarrito.innerHTML += `
+//         <div class="card" style="width: 18rem;" id="${indice +1}">
+//             <div class="card-body">
+//                 <h5 class="card-title">${estilo.nombre}</h5>
+//                 <button type="submit" class="btn btn-danger" id="boton_eliminar ${indice + 1}">Eliminar</button>
+//             </div>
+//         </div>`
+//     })
 
-
-
-
-
+    
+// })
 
