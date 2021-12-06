@@ -62,20 +62,17 @@ catalogo.forEach((estilo, indice) => {
                 <li><a class="dropdown-item" id="selec_barril" href="#">50</a></li>
             </ul>
         </div>
-        <button type="submit" class="btn btn-success" style="margin-top: 10px;" id="agregar_carrito ${estilo.nombre}">Agregar</button>
+        <button type="submit" class="btn btn-success" style="margin-top: 10px;" id="agregar_carrito ${estilo.nombre}">Agregar</button> /*no se si usar indice + 1 o estilo.nombre en el id del boton*/
     </div>`    
 
-    
+    $(() => {
+        $(`#agregar_carrito ${indice + 1}`).on ('click', () => {
+            carrito.push (estilo.nombre)
+            carritoLocal ()
+        })
+    })
 })
 
-//funcion agregar producto al array carrito 
-for (let estilo of catalogo) {
-    let btnAgregar = $(`#agregar_carrito ${estilo.nombre}`).on ('click', () => {
-        carrito.push(estilo.nombre)
-        carritoLocal ()
-        alert ("Agrego un estilo al carrito")
-    })
-}
 
 // //hago una variable para obtener los objetos del array carrito parseados
 // let carritoParseado = JSON.parse(localStorage.getItem(carrito))
