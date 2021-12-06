@@ -77,12 +77,9 @@ for (let estilo of catalogo) {
         carrito.push (estilo.nombre)//Como puedo enviar el objeto completo? 
         carritoLocal ()
         alert ("Agregaste un estilo al carrito")
+        console.log(carrito)
     }
 }
-
-
-// //hago una variable para obtener los objetos del array carrito parseados
-// let carritoParseado = JSON.parse(localStorage.getItem(carrito))
 
 
 
@@ -99,8 +96,7 @@ divMostrar.addEventListener ('click', () => {
         divCarrito.innerHTML += `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${estilo.nombre}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${estilo.precio}</h6>
+                <h5 class="card-title">${estilo}</h5>
                 <button type="button" class="btn btn-danger" style="margin-top: 10px;" id="eliminar_carrito ${indice + 1}">Eliminar</button>
             </div>
         </div>`
