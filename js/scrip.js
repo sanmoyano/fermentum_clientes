@@ -29,13 +29,6 @@ let catalogo = [cerveza1,cerveza2,cerveza3,cerveza4,cerveza5,cerveza6,cerveza7,c
 //mando el array al local storage y lo convierto en JSON
 localStorage.setItem('catalogo', JSON.stringify(catalogo))
 
-//creo un array simil carrito, para se guarde lo que se agregue desde el evento del boton agregar carrito
-let carrito = []
-//cargo el carrito vacio en el localStorage
-function carritoLocal () {
-    localStorage.setItem('carrito', JSON.stringify(carrito))
-}
-
 /*HTML*/
 //hago un div con id para manejar las cards de las cervezas y subir todos los objetos del array. 
 let divCard = document.getElementById('card_cerveza') //lo consulto
@@ -62,20 +55,36 @@ catalogo.forEach((estilo, indice) => {
                 <li><a class="dropdown-item" id="selec_barril" href="#">50</a></li>
             </ul>
         </div>
-        <button type="submit" class="btn btn-success" style="margin-top: 10px;" id="agregar_carrito ${estilo.nombre}">Agregar</button> /*no se si usar indice + 1 o estilo.nombre en el id del boton*/
+        <button type="submit" class="btn btn-success" style="margin-top: 10px;" id="agregar_carrito ${estilo.nombre}">Agregar</button>
     </div>`    
 
-    $(() => {
-        $(`#agregar_carrito ${indice + 1}`).on ('click', () => {
-            carrito.push (estilo.nombre)
-            carritoLocal ()
-        })
-    })
 })
+
+//creo un array simil carrito, para se guarde lo que se agregue desde el evento del boton agregar carrito
+let carrito = []
+
+//cargo el carrito vacio en el localStorage - lo hago funcion para usarlo cuando se carge cada objeto. 
+function carritoLocal () {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+}
+
+//funcion agregar producto al array carrito
+for (let estilo of catalogo) {
+    let btn_agregar = document.getElementById(`agregar_carrito ${estilo.nombre}`)
+    btn_agregar.addEventListener ('click', agregarEstilo)
+
+    function agregarEstilo () {
+        carrito.push (estilo.nombre) 
+        carritoLocal ()
+        alert ("Agregaste un estilo al carrito")
+    }
+}
 
 
 // //hago una variable para obtener los objetos del array carrito parseados
 // let carritoParseado = JSON.parse(localStorage.getItem(carrito))
+
+
 
 //creo un div con id para manejar los elementos del array en carrito
 let divCarrito = document.getElementById('carrito')
