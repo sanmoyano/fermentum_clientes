@@ -74,7 +74,7 @@ for (let estilo of catalogo) {
     btn_agregar.addEventListener ('click', agregarEstilo)
 
     function agregarEstilo () {
-        carrito.push (estilo.nombre) 
+        carrito.push (estilo.nombre)//Como puedo enviar el objeto completo? 
         carritoLocal ()
         alert ("Agregaste un estilo al carrito")
     }
