@@ -29,6 +29,13 @@ let catalogo = [cerveza1,cerveza2,cerveza3,cerveza4,cerveza5,cerveza6,cerveza7,c
 //mando el array al local storage y lo convierto en JSON
 localStorage.setItem('catalogo', JSON.stringify(catalogo))
 
+//creo un array simil carrito, para se guarde lo que se agregue desde el evento del boton agregar carrito
+let carrito = []
+//cargo el carrito vacio en el localStorage - lo hago funcion para usarlo cuando se carge cada objeto. 
+function carritoLocal () {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+}
+
 /*HTML*/
 //hago un div con id para manejar las cards de las cervezas y subir todos los objetos del array. 
 let divCard = document.getElementById('card_cerveza') //lo consulto
@@ -60,21 +67,14 @@ catalogo.forEach((estilo, indice) => {
 
 })
 
-//creo un array simil carrito, para se guarde lo que se agregue desde el evento del boton agregar carrito
-let carrito = []
-
-//cargo el carrito vacio en el localStorage - lo hago funcion para usarlo cuando se carge cada objeto. 
-function carritoLocal () {
-    localStorage.setItem('carrito', JSON.stringify(carrito))
-}
-
 //funcion agregar producto al array carrito
 for (let estilo of catalogo) {
     let btn_agregar = document.getElementById(`agregar_carrito ${estilo.nombre}`)
     btn_agregar.addEventListener ('click', agregarEstilo)
 
     function agregarEstilo () {
-        carrito.push (estilo.nombre)//Como puedo enviar el objeto completo? 
+        const filterEstilo = catalogo.find(estilos => estilos.nombre == estilo.nombre)
+        carrito.push (filterEstilo) //hago el push del objeto completo. 
         carritoLocal ()
         alert ("Agregaste un estilo al carrito")
         console.log(carrito)
