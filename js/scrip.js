@@ -82,6 +82,8 @@ for (let estilo of catalogo) {
     }
 }
 
+
+
 //creo un div con id para manejar los elementos del array en carrito
 let divCarrito = document.getElementById('carrito')
 
