@@ -5,12 +5,13 @@ class Cerveza {
         this.ibu = ibu
         this.alcohol = alcohol
         this.precio = precio
-        this.stock = precio
+        this.stock = stock
     }
     //metodos del objeto - solo funcionan cuando llamo al objeto.
     datosEstilo () {
         return`${this.nombre} - ${this.ibu} - ${this.alcohol} - ${this.precio} - ${this.stock}`
     }
+
 }
 
 //crear todos los estilos del catalogo - instancias del objeto
@@ -73,7 +74,7 @@ for (let estilo of catalogo) {
     btn_agregar.addEventListener ('click', agregarEstilo)
 
     function agregarEstilo () {
-        const filterEstilo = catalogo.find(estilos => estilos.nombre == estilo.nombre)
+        const filterEstilo = catalogo.find(estilos => estilos.nombre == estilo.nombre) //Le estamamos haciendo un find al array donde estan todos los productos y preguntando si el nombre es igual al que le esta pasando entonces saca ese producto del array.
         carrito.push (filterEstilo) //hago el push del objeto completo. 
         carritoLocal ()
         alert ("Agregaste un estilo al carrito")
