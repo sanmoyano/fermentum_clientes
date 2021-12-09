@@ -1,3 +1,43 @@
+//animacion dark mode
+let darkMode 
+
+if (localStorage.getItem("blackMode")) { // consulto si existe el valor en el localStorage
+    darkMode = localStorage.getItem("blackMode")
+} else {
+    darkMode = "light"
+}
+
+localStorage.setItem("blackMode", darkMode)//si no existe lo creo.
+
+$(() => {
+    if (localStorage.getItem("blackMode") == "dark") {
+        $("body").addClass("blackMode")
+        $("#dark_mode").hide ()
+        $("#light_mode").show ()
+    } else {
+        $("#light_mode").hide ()
+    }
+
+    $("#light_mode").click (() => {
+        $("#light_mode").hide ()
+        $("#dark_mode").show ()
+
+        $("body").removeClass ("blackMode")
+        localStorage.setItem("blackMode", "light")
+    })
+    
+    $("#dark_mode").click (() => {
+        $("#light_mode").show ()
+        $("#dark_mode").hide ()
+
+        $("body").addClass ("blackMode")
+        localStorage.setItem("blackMode", "light")
+    })
+
+})
+
+
+
 // primero crear clase de objeto - cerveza
 class Cerveza {
     constructor (nombre, ibu, alcohol, precio, stock){
