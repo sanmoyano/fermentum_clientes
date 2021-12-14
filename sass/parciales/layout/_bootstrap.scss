@@ -1,12 +1,18 @@
-#carrito {
+#canvas_carrito {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 15px;
+    #boton_carrito {
+        margin: 15px;
+    }
 }
 .card-img-top {
     margin-top: 12px;
 }
 .btn-warning {
     margin-bottom: 12px;
+}
+
+.card {
+    margin: 12px;
 }

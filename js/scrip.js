@@ -32,8 +32,6 @@ fetch ('../JSON/productos.json')
         let carrito = [];
         function setLocal () {
             localStorage.setItem('carrito', JSON.stringify(carrito));
-            alert ("Agregaste un estilo");
-            // console.log(carrito)
         }
         //varaible para sumar totales.
         let acumTot = 0;
@@ -46,6 +44,7 @@ fetch ('../JSON/productos.json')
             //funcion agregar al carrito el producto 
             function agregarProd () {
                 carrito.push(producto.nombre);
+                alert ("Agregaste un estilo");
                 setLocal ();
             }    
         }
@@ -58,27 +57,32 @@ fetch ('../JSON/productos.json')
             //funcion agegar precio al acumulador 
             function agregarPrecio () {
                 acumTot += producto.precio
-                carrito.push(acumTot)
+                // carrito.push(acumTot)
                 setLocal ()
             }
         }
 
-        //creo la variable para el boton carrito
+        //creo la variable para el boton carrito y la capturo
         let btnCarrito = document.getElementById('boton_carrito');
-        //consulto div carrito
-        let divCarrito = document.getElementById('canvas_carrito');
+        //consulto div carrito y lo capturo
+        let divCarrito = document.getElementById('producto_carrito');
 
         //tengo que crear una funcion que recorra el array donde se guardan los productos enviados al carrito y agregarlo al boton de "Mostrar pedido"
-        (mostrarPedido) => {
-            for (let i = 0; i < carrito.length; i += 1) {
+        const mostrarPedido = () => {
+            for (let i = 0; i < carrito.length; i += 1) { //como agregar el barril seleccionado y multiplicarlo por el total
                 divCarrito.innerHTML += `
-                <p>${carrito[i]}</p>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${carrito[i]}</h5>
+                        <p class="card-text">Aca va el barril pedido</p>
+                        <button href="#" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
                 `
             }
         }
-
-        btnCarrito.addEventListener('click', mostrarPedido)
-
+        //agregar evento al boton "mostrar pedido"
+        btnCarrito.addEventListener('click', mostrarPedido);
 
 
 
