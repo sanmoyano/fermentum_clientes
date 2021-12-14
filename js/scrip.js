@@ -35,6 +35,11 @@ fetch ('../JSON/productos.json')
         }
         //varaible para sumar totales.
         let acumTot = 0;
+        //cargo la variable en un array y la subo al local
+        let total = [acumTot];
+        function setTotal () {
+            localStorage.setItem('total', JSON.stringify(total));
+        }
 
         //recorro el array de productos  para cargarlos en el array carrito y enviar al localStorage
         for (let producto of dataProductos) {
@@ -49,6 +54,15 @@ fetch ('../JSON/productos.json')
             }    
         }
 
+        //capturar del dropdown el valor de los barriles 
+        let barriles = document.getElementById('select_barril');
+        //tengo que capturar el valor de barriles y asignarlo a nueva variable para multiplicarlo a acumTot
+        barriles.addEventListener ('change', (e) => {
+            const value = document.getElementById ('total_carrito');
+            value.textContent = `El barril es de ${e.target.value}`;
+            
+        })
+
         //recorro el array para agregar el precio al carrito 
         for (let producto of dataProductos) {
             let btnAgregar = document.getElementById(`agregar_carrito ${producto.nombre}`);
@@ -56,9 +70,9 @@ fetch ('../JSON/productos.json')
 
             //funcion agegar precio al acumulador 
             function agregarPrecio () {
-                acumTot += producto.precio
-                // carrito.push(acumTot)
-                setLocal ()
+                acumTot += producto.precio;
+                total.push(acumTot);
+                setTotal ();
             }
         }
 
@@ -75,7 +89,7 @@ fetch ('../JSON/productos.json')
                     <div class="card-body">
                         <h5 class="card-title">${carrito[i]}</h5>
                         <p class="card-text">Aca va el barril pedido</p>
-                        <button href="#" class="btn btn-danger">Eliminar</button>
+                        <button id="boton_eliminar" class="btn btn-danger">Eliminar</button>
                     </div>
                 </div>
                 `
@@ -84,13 +98,6 @@ fetch ('../JSON/productos.json')
         //agregar evento al boton "mostrar pedido"
         btnCarrito.addEventListener('click', mostrarPedido);
 
-
-
-        //capturo dropdown --- ver como capturar "seleccionar barril"
-        // $('#select_barril').on ('change', (e) => {
-        //     let value = e.target.value
-        //     console.log(value)
-        // })
         
     })
 
