@@ -4,6 +4,9 @@ let btnCarrito = document.getElementById('boton_carrito');
 let carritoCanvas = document.getElementById('producto_carrito');
 let btnFinalizar = document.getElementById('boton_finalizar');
 
+//variable acumulador total
+let acumTot = 0;
+
 //consulto mi base de datos de producto local y la cargo en el html
 fetch ('../JSON/productos.json')
     .then (promesa => promesa.json())
@@ -19,7 +22,7 @@ fetch ('../JSON/productos.json')
                     <h4 class="card-text">Precio/L: $${producto.precio}</h4>
                 </div>
                 <div class="dropdown">
-                    <select id="select_barril" class="btn btn-secondary" style="margin-bottom: 10px;">
+                    <select id="select_barril${indice}" class="btn btn-secondary" style="margin-bottom: 10px;">
                         <option value:"none">Seleccionar barril</option>
                         <option value:"10">10 litros</option>
                         <option value:"20">20 litros</option>
@@ -31,7 +34,52 @@ fetch ('../JSON/productos.json')
             </div>`
         });        
 
-        
+        //agregar un producto al carrito
+        dataProductos.forEach ((producto, indice) => {
+            document.getElementById(`agregar_carrito ${indice}`).addEventListener ('click', () => {
+                if (estilos.find(estilo => estilo.nombre == producto.nombre )) { //consultar si el producto ya esta cargado LS
+                    let index = estilos.findIndex(estilo => estilo.nombre == producto.nombre);
+                    estilos[index].cant ++; //si esta, sumar productos en cantidad
+                    localStorage.setItem('carrito', JSON.stringify(estilos)); //sumarlo al lS
+                } else {
+                    let estilo = new Cerveza (producto.id, producto.nombre, producto.ibu, producto.alcohol, producto.precio, producto.stock, producto.img);
+                    estilos.push(estilo);//si no esta, crear producto y agregarlo al array
+                    localStorage.setItem('carrito', JSON.stringify(estilos));//devolverlo al lS
+                }
+            })
+        })
+
+        //agregar barril seleccionado y multiplicarlo por el precio
+        dataProductos.forEach ((producto, indice) => {
+            document.getElementById(`select_barril${indice}`).addEventListener ('change', (e) => {
+                let litrosPedidos = document.getElementById ('litros_pedidos')
+                litrosPedidos.textContent = `${e.target.litrosPedidos}`
+            })
+        })
+
+    })
+
+    btnCarrito.addEventListener('click', () => {
+        let estilosStorage = JSON.parse(localStorage.getItem('carrito'));
+        estilosStorage.forEach ((estilo, indice) => {
+            carritoCanvas.innerHTML += `
+            <div class="card mb-3" id="estilos${indice}" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../images/${estilo.img}" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${estilo.nombre}</h5>
+                            <p>Aca va el barril seleccionado</p>
+                            <p>$${estilo.precio}</p>
+                            <button href="#" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        })
     })
 
 

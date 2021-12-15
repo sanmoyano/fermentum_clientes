@@ -7,6 +7,7 @@ class Cerveza {
         this.precio = precio;
         this.stock = stock;
         this.img = img;
+        this.cant = 1;
     }
 }
 
