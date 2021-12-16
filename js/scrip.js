@@ -70,6 +70,7 @@ fetch ('../JSON/productos.json')
 
     btnCarrito.addEventListener('click', () => {
         let estilosStorage = JSON.parse(localStorage.getItem('carrito'));
+        carritoCanvas.innerHTML = "";
         estilosStorage.forEach ((producto, indice) => {
             carritoCanvas.innerHTML += `
             <div class="card mb-3" id="estilos${indice}" style="max-width: 540px;">
@@ -94,86 +95,21 @@ fetch ('../JSON/productos.json')
                 </div>
             </div>
             `
-
-            carritoTotal ()
         })
-        function carritoTotal () {
-            let total = 0;
-            let totalCarritoCanvas = document.getElementById ('total_carrito')
-            console.log(totalCarritoCanvas)
-        }
+        barrilSelect ()
     })
 
+    //funcion para cargar el barril seleccionado
+    const barrilSelect = () => {
+        const dataProductosCarrito = JSON.parse(localStorage.getItem('carrito'));
+        dataProductosCarrito.forEach((producto, indice) => {
+            document.getElementById (`select_barril${indice}`).addEventListener('change', (e) => {
+                let dropDown = e.target;
+                console.log(dropDown)
+            })
+        })
+    }
 
-        // //array carrito vacio y creo funcion para cargarlo en el localStorage.
-        // let carrito = [];
-        // function setLocal () {
-        //     localStorage.setItem('carrito', JSON.stringify(carrito));
-        // }
-        // //varaible para sumar totales.
-        // let acumTot = 0;
-        // //cargo la variable en un array y la subo al local
-        // let total = [acumTot];
-        // function setTotal () {
-        //     localStorage.setItem('total', JSON.stringify(total));
-        // }
-
-        // //recorro el array de productos  para cargarlos en el array carrito y enviar al localStorage
-        // for (let producto of dataProductos) {
-        //     let btnAgregar = document.getElementById(`agregar_carrito ${producto.nombre}`);
-        //     btnAgregar.addEventListener ('click', agregarProd);
-            
-        //     //funcion agregar al carrito el producto 
-        //     function agregarProd () {
-        //         carrito.push(producto.nombre);
-        //         alert ("Agregaste un estilo");
-        //         setLocal ();
-        //     }    
-        // }
-
-        // //capturar del dropdown el valor de los barriles 
-        // let barriles = document.getElementById('select_barril');
-        // //tengo que capturar el valor de barriles y asignarlo a nueva variable para multiplicarlo a acumTot
-        // barriles.addEventListener ('change', (e) => {
-        //     const value = document.getElementById ('total_carrito');
-        //     value.textContent = `El barril es de ${e.target.value}`;
-            
-        // })
-
-        // //recorro el array para agregar el precio al carrito 
-        // for (let producto of dataProductos) {
-        //     let btnAgregar = document.getElementById(`agregar_carrito ${producto.nombre}`);
-        //     btnAgregar.addEventListener ('click', agregarPrecio);
-
-        //     //funcion agegar precio al acumulador 
-        //     function agregarPrecio () {
-        //         acumTot += producto.precio;
-        //         total.push(acumTot);
-        //         setTotal ();
-        //     }
-        // }
-
-        // //creo la variable para el boton carrito y la capturo
-        // let btnCarrito = document.getElementById('boton_carrito');
-        // //consulto div carrito y lo capturo
-        // let divCarrito = document.getElementById('producto_carrito');
-
-        // //tengo que crear una funcion que recorra el array donde se guardan los productos enviados al carrito y agregarlo al boton de "Mostrar pedido"
-        // const mostrarPedido = () => {
-        //     for (let i = 0; i < carrito.length; i += 1) { //como agregar el barril seleccionado y multiplicarlo por el total
-        //         divCarrito.innerHTML += `
-        //         <div class="card">
-        //             <div class="card-body">
-        //                 <h5 class="card-title">${carrito[i]}</h5>
-        //                 <p class="card-text">Aca va el barril pedido</p>
-        //                 <button id="boton_eliminar" class="btn btn-danger">Eliminar</button>
-        //             </div>
-        //         </div>
-        //         `
-        //     }
-        // }
-        // //agregar evento al boton "mostrar pedido"
-        // btnCarrito.addEventListener('click', mostrarPedido);
 
 
 
