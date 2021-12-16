@@ -24,10 +24,10 @@ fetch ('../JSON/productos.json')
                 <div class="dropdown">
                     <select id="select_barril${indice}" class="btn btn-secondary" style="margin-bottom: 10px;">
                         <option value:"none">Seleccionar barril</option>
-                        <option class="valor" value:"10">10 litros</option>
-                        <option class="valor" value:"20">20 litros</option>
-                        <option class="valor" value:"30">30 litros</option>
-                        <option class="valor" value:"50">50 litros</option>
+                        <option class="valor" value:"10">${producto.barril10} litros</option>
+                        <option class="valor" value:"20">${producto.barril20} litros</option>
+                        <option class="valor" value:"30">${producto.barril30} litros</option>
+                        <option class="valor" value:"50">${producto.barril50} litros</option>
                     </select>
                 </div>
                 <button id="agregar_carrito ${indice}" class="btn btn-warning">Agregar estilo</button>
@@ -53,8 +53,12 @@ fetch ('../JSON/productos.json')
         dataProductos.forEach ((producto, indice) => {
             document.getElementById(`select_barril${indice}`).addEventListener ('change', (e) => {
                 let dropDown = e.target;
-                console.log(dropDown)
-                let value = 
+                let total = dropDown[1] * producto.precio
+                console.log(total)
+                console.log(dropDown[1].value)
+                console.log(dropDown[2].value)
+                console.log(dropDown[3].value)
+                console.log(dropDown[4].value)
             })
         })
 
