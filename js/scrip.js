@@ -1,11 +1,11 @@
 //variables para manejar los elementos html
-let divCerveza = document.getElementById('card_cerveza');
-let btnCarrito = document.getElementById('boton_carrito');
-let carritoCanvas = document.getElementById('producto_carrito');
-let btnFinalizar = document.getElementById('boton_finalizar');
-
+let divCerveza = document.getElementById('card_cerveza'); //cards de todas las cervezas
+let btnCarrito = document.getElementById('boton_carrito');//boton agregar carrito
+let carritoCanvas = document.getElementById('producto_carrito');//canvas carrito
+let btnFinalizar = document.getElementById('boton_finalizar');//boton finalizar 
 //variable acumulador total
 let acumTot = 0;
+
 
 //consulto mi base de datos de producto local y la cargo en el html
 fetch ('../JSON/productos.json')
@@ -24,10 +24,10 @@ fetch ('../JSON/productos.json')
                 <div class="dropdown">
                     <select id="select_barril${indice}" class="btn btn-secondary" style="margin-bottom: 10px;">
                         <option value:"none">Seleccionar barril</option>
-                        <option value:"10">10 litros</option>
-                        <option value:"20">20 litros</option>
-                        <option value:"30">30 litros</option>
-                        <option value:"50">50 litros</option>
+                        <option class="valor" value:"10">10 litros</option>
+                        <option class="valor" value:"20">20 litros</option>
+                        <option class="valor" value:"30">30 litros</option>
+                        <option class="valor" value:"50">50 litros</option>
                     </select>
                 </div>
                 <button id="agregar_carrito ${indice}" class="btn btn-warning">Agregar estilo</button>
@@ -52,8 +52,9 @@ fetch ('../JSON/productos.json')
         //agregar barril seleccionado y multiplicarlo por el precio
         dataProductos.forEach ((producto, indice) => {
             document.getElementById(`select_barril${indice}`).addEventListener ('change', (e) => {
-                let litrosPedidos = document.getElementById ('litros_pedidos')
-                litrosPedidos.textContent = `${e.target.litrosPedidos}`
+                let dropDown = e.target;
+                console.log(dropDown)
+                let value = 
             })
         })
 
