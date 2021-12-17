@@ -17,6 +17,19 @@
     margin: 12px;
 }
 
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    i {
+        font-size: 20px;
+    }
+}
+
+.card-body {
+    padding: 0px;
+    margin-left: 10px;
+}
+
 .ul_carrito {
     margin: 10px;
 }

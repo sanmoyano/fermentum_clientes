@@ -21,16 +21,7 @@ fetch ('../JSON/productos.json')
                     <h4 class="card-text">Alcohol: ${producto.alcohol}</h4>
                     <h4 class="card-text">Precio/L: $${producto.precio}</h4>
                 </div>
-                <div class="dropdown">
-                    <select id="select_barril${indice}" class="btn btn-secondary" style="margin-bottom: 10px;">
-                        <option value="none">Seleccionar barril</option>
-                        <option value="10">${producto.barril10} litros</option>
-                        <option value="20">${producto.barril20} litros</option>
-                        <option value="30">${producto.barril30} litros</option>
-                        <option value="50">${producto.barril50} litros</option>
-                    </select>
-                </div>
-                <button id="agregar_carrito ${indice}" class="btn btn-warning">Agregar estilo</button>
+                <button id="agregar_carrito ${indice}" class="btn btn-warning" style="margin-top: 10px;">Agregar estilo</button>
             </div>`
         });        
 
@@ -49,23 +40,6 @@ fetch ('../JSON/productos.json')
             })
         })
 
-        //agregar barril seleccionado y multiplicarlo por el precio
-        dataProductos.forEach ((producto, indice) => {
-            document.getElementById(`select_barril${indice}`).addEventListener ('change', (e) => {
-                let dropDown = e.target;
-                console.log(dropDown)
-                
-                
-                // let total = producto.precio * producto.barril10
-                // console.log(total)
-                console.log(producto.precio)
-                console.log (parseFloat((dropDown[1].value)))
-                // console.log(dropDown[2].value)
-                // console.log(dropDown[3].value)
-                // console.log(dropDown[4].value)
-            })
-        })
-
     })
 
     btnCarrito.addEventListener('click', () => {
@@ -81,15 +55,19 @@ fetch ('../JSON/productos.json')
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">${producto.nombre}</h5>
+                            <p class="card-title">$${producto.precio} /L</p>
                         </div>
                         <div class="dropdown">
-                            <select id="select_barril${indice}" class="btn btn-secondary" style="margin: 10px;">
-                                <option value="none">Seleccionar barril</option>
-                                <option value="10">${producto.barril10} litros</option>
-                                <option value="20">${producto.barril20} litros</option>
-                                <option value="30">${producto.barril30} litros</option>
-                                <option value="50">${producto.barril50} litros</option>
-                            </select>
+                            <label>
+                                <select id="select_barril${indice}" class="btn btn-secondary" style="margin-left: 10px; margin-right: 10px;">
+                                    <option value="none">Selec. barril</option>
+                                    <option value="10">${producto.barril10} litros</option>
+                                    <option value="20">${producto.barril20} litros</option>
+                                    <option value="30">${producto.barril30} litros</option>
+                                    <option value="50">${producto.barril50} litros</option>
+                                </select>
+                            </label>
+                            <button id="eliminar_carrito${indice}" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
                         </div>
                     </div>
                 </div>
@@ -104,8 +82,10 @@ fetch ('../JSON/productos.json')
         const dataProductosCarrito = JSON.parse(localStorage.getItem('carrito'));
         dataProductosCarrito.forEach((producto, indice) => {
             document.getElementById (`select_barril${indice}`).addEventListener('change', (e) => {
-                let dropDown = e.target;
-                console.log(dropDown)
+                const seleccion = e.target.value;
+                let total = seleccion * producto.precio
+                console.log(total)
+
             })
         })
     }
