@@ -40,7 +40,6 @@ fetch ('../JSON/productos.json')
                     estilos.push(estilo);//si no esta, crear producto y agregarlo al array
                     localStorage.setItem('carrito', JSON.stringify(estilos));//devolverlo al lS
                     alert("Agregaste un estilo al pedido");
-
                 }
             })
         })
@@ -85,7 +84,6 @@ fetch ('../JSON/productos.json')
                 `
             })
             barrilSelect ();
-            pedidoTotal ();
         }
     })
 
@@ -103,10 +101,6 @@ const barrilSelect = () => {
             console.log(arraySubTotales)
         })
     })
-}
-
-const pedidoTotal = () => {
-
 }
 
 
