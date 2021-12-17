@@ -39,56 +39,62 @@ fetch ('../JSON/productos.json')
                 }
             })
         })
-
     })
 
     btnCarrito.addEventListener('click', () => {
         let estilosStorage = JSON.parse(localStorage.getItem('carrito'));
-        carritoCanvas.innerHTML = "";
-        estilosStorage.forEach ((producto, indice) => {
+        if (estilosStorage == null) {
             carritoCanvas.innerHTML += `
-            <div class="card mb-3" id="estilos${indice}" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="../images/${producto.img}" class="img-fluid rounded-start">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">${producto.nombre}</h5>
-                            <p class="card-title">$${producto.precio} /L</p>
+            <h6>No realizo ningun pedido.</h6>
+            `
+        } else {
+            carritoCanvas.innerHTML = "";
+            estilosStorage.forEach ((producto, indice) => {
+                carritoCanvas.innerHTML += `
+                <div class="card mb-3" id="estilos${indice}" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="../images/${producto.img}" class="img-fluid rounded-start">
                         </div>
-                        <div class="dropdown">
-                            <label>
-                                <select id="select_barril${indice}" class="btn btn-secondary" style="margin-left: 10px; margin-right: 10px;">
-                                    <option value="none">Selec. barril</option>
-                                    <option value="10">${producto.barril10} litros</option>
-                                    <option value="20">${producto.barril20} litros</option>
-                                    <option value="30">${producto.barril30} litros</option>
-                                    <option value="50">${producto.barril50} litros</option>
-                                </select>
-                            </label>
-                            <button id="eliminar_carrito${indice}" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${producto.nombre}</h5>
+                                <p class="card-title">$${producto.precio} /L</p>
+                            </div>
+                            <div class="dropdown">
+                                <label>
+                                    <select id="select_barril${indice}" class="btn btn-secondary" style="margin-left: 10px; margin-right: 10px;">
+                                        <option value="none">Selec. barril</option>
+                                        <option value="10">${producto.barril10} litros</option>
+                                        <option value="20">${producto.barril20} litros</option>
+                                        <option value="30">${producto.barril30} litros</option>
+                                        <option value="50">${producto.barril50} litros</option>
+                                    </select>
+                                </label>
+                                <button id="eliminar_carrito${indice}" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            `
-        })
-        barrilSelect ()
+                `
+            })
+            barrilSelect ()
+        }
     })
 
-    //funcion para cargar el barril seleccionado
-    const barrilSelect = () => {
-        const dataProductosCarrito = JSON.parse(localStorage.getItem('carrito'));
-        dataProductosCarrito.forEach((producto, indice) => {
-            document.getElementById (`select_barril${indice}`).addEventListener('change', (e) => {
-                const seleccion = e.target.value;
-                let total = seleccion * producto.precio
-                console.log(total)
-
-            })
+//funcion para cargar el barril seleccionado
+const barrilSelect = () => {
+    const dataProductosCarrito = JSON.parse(localStorage.getItem('carrito'));
+    dataProductosCarrito.forEach((producto, indice) => {
+        document.getElementById (`select_barril${indice}`).addEventListener('change', (e) => {
+            const seleccion = e.target.value; //capturo el valor del barril seleccionado y lo meto en una variable 
+            const multiplicacion = seleccion * producto.precio; // creo una variable con la seleccion y la multiplico por el precio    
+            acumTot += multiplicacion
+            console.log(acumTot)
         })
-    }
+    })
+}
+
 
 
 
