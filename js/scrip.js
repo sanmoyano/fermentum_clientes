@@ -3,6 +3,7 @@ let divCerveza = document.getElementById('card_cerveza'); //cards de todas las c
 let btnCarrito = document.getElementById('boton_carrito');//boton agregar carrito
 let carritoCanvas = document.getElementById('producto_carrito');//canvas carrito
 let btnFinalizar = document.getElementById('boton_finalizar');//boton finalizar 
+let divTotalCarrito = document.getElementById('total_carrito');//total
 //variable acumulador total
 let acumTot = 0;
 //array de sub totales de cada producto en el carrito 
@@ -78,6 +79,7 @@ fetch ('../JSON/productos.json')
                                 </label>
                                 <button id="eliminar_carrito${indice}" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
                             </div>
+                            <div id"mostrar_total">ACAAAA$${total}</div>
                         </div>
                     </div>
                 </div>
@@ -86,6 +88,7 @@ fetch ('../JSON/productos.json')
             barrilSelect ();
         }
     })
+
 
 //funcion para cargar el barril seleccionado y calcular el precio de cada articulo
 const barrilSelect = () => {
@@ -98,12 +101,17 @@ const barrilSelect = () => {
 
             arraySubTotales.push(multiplicacion)//envio los totales a un array de totales 
             localStorage.setItem('subTot', JSON.stringify(arraySubTotales));//los envio al localStorage 
-            console.log(arraySubTotales)
+            // console.log(arraySubTotales)            
         })
     })
 }
 
-
+// funcion para sumar todos los sub totales
+// function subotal () {
+//     let subtotales = JSON.parse(localStorage.getItem('arraySubTotales'));
+//     let sumaSubTotales = (valor1, valor2) => valor1 + valor2;
+//     return subtotales.reduce(sumaSubTotales);
+// }
 
 
 
