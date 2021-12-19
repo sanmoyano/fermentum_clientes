@@ -1,8 +1,9 @@
+
 //variables para manejar los elementos html
 let divCerveza = document.getElementById('card_cerveza'); //cards de todas las cervezas
 let btnCarrito = document.getElementById('boton_carrito');//boton agregar carrito
 let carritoCanvas = document.getElementById('producto_carrito');//canvas carrito
-let btnFinalizar = document.getElementById('boton_finalizar');//boton finalizar 
+let btnFinalizar = document.getElementById('finalizar_compra');//boton finalizar 
 let divTotalCarrito = document.getElementById('total_carrito');//total
 //variable acumulador total
 let acumTot = 0;
@@ -90,7 +91,7 @@ fetch ('../JSON/productos.json')
         }
     })
 
-    //Agregar precio final
+    //Agregar precio final y modificar el canvas
     $(() => {
         $("#boton_carrito").click(function totalApagar() {
             let subTotales = JSON.parse(localStorage.getItem('subTot'));
@@ -100,6 +101,23 @@ fetch ('../JSON/productos.json')
                 $("#total_carrito").append(`<h4>TOTAL: $${sumarArraySubTotales()}</h4>`);
             }
         })
+    })
+
+    //finalizar compra
+    // btnFinalizar.addEventListener('click', () => console.log ("click"))
+    btnFinalizar.addEventListener ('click', () => {
+        let estilosEnCarrito = JSON.parse(localStorage.getItem('carrito'));
+        if (estilosEnCarrito == null) {
+            alert ("Debe agregregar al menos un estilo al pedido")
+        } else {
+            alert ("Gracias por su compra");
+            carritoCanvas.innerHTML = "";
+            carritoCanvas.innerHTML += `
+            <h6>No realizo ningun pedido.</h6>
+            `
+            localStorage.clear()
+            sessionStorage.clear()
+        }
     })
 
 //funcion para cargar el barril seleccionado y calcular el precio de cada articulo
@@ -122,7 +140,7 @@ const barrilSelect = () => {
 function sumarArraySubTotales () {
     const subTotalesArray = JSON.parse(localStorage.getItem('subTot'));
     let suma = (valor1, valor2) => valor1 + valor2; 
-    console.log(subTotalesArray.reduce(suma))
+    // console.log(subTotalesArray.reduce(suma))
     return subTotalesArray.reduce(suma);
 }
 
