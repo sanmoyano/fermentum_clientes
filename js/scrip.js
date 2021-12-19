@@ -90,6 +90,17 @@ fetch ('../JSON/productos.json')
         }
     })
 
+    //Agregar precio final
+    $(() => {
+        $("#boton_carrito").click(function totalApagar() {
+            let subTotales = JSON.parse(localStorage.getItem('subTot'));
+            if (subTotales == null) {
+                $("#total_carrito").append(`<h4>TOTAL: $0,00</h4>`);
+            } else {
+                $("#total_carrito").append(`<h4>TOTAL: $${sumarArraySubTotales()}</h4>`);
+            }
+        })
+    })
 
 //funcion para cargar el barril seleccionado y calcular el precio de cada articulo
 const barrilSelect = () => {
@@ -107,42 +118,11 @@ const barrilSelect = () => {
     })
 }
 
+//funcion para sumar todos los subtotales del array 
 function sumarArraySubTotales () {
     const subTotalesArray = JSON.parse(localStorage.getItem('subTot'));
     let suma = (valor1, valor2) => valor1 + valor2; 
     console.log(subTotalesArray.reduce(suma))
+    return subTotalesArray.reduce(suma);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
