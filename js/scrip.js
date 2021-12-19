@@ -50,6 +50,7 @@ fetch ('../JSON/productos.json')
     btnCarrito.addEventListener('click', () => {
         let estilosStorage = JSON.parse(localStorage.getItem('carrito'));//consulto si el carrtio del LS esta vacio
         if (estilosStorage == null) {
+            carritoCanvas.innerHTML = "";
             carritoCanvas.innerHTML += `
             <h6>No realizo ningun pedido.</h6>
             `
@@ -71,21 +72,21 @@ fetch ('../JSON/productos.json')
                                 <label>
                                     <select id="select_barril${indice}" class="btn btn-secondary" style="margin-left: 10px; margin-right: 10px;">
                                         <option value="none">Selec. barril</option>
-                                        <option value="10">${producto.barril10} litros</option>
-                                        <option value="20">${producto.barril20} litros</option>
-                                        <option value="30">${producto.barril30} litros</option>
-                                        <option value="50">${producto.barril50} litros</option>
+                                        <option id="select_litros" value="10">${producto.barril10} litros</option>
+                                        <option id="select_litros" value="20">${producto.barril20} litros</option>
+                                        <option id="select_litros" value="30">${producto.barril30} litros</option>
+                                        <option id="select_litros" value="50">${producto.barril50} litros</option>
                                     </select>
                                 </label>
                                 <button id="eliminar_carrito${indice}" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
                             </div>
-                            <div id"mostrar_total">ACAAAA$${total}</div>
                         </div>
                     </div>
                 </div>
                 `
             })
             barrilSelect ();
+            sumarArraySubTotales ();
         }
     })
 
@@ -106,12 +107,13 @@ const barrilSelect = () => {
     })
 }
 
-// funcion para sumar todos los sub totales
-// function subotal () {
-//     let subtotales = JSON.parse(localStorage.getItem('arraySubTotales'));
-//     let sumaSubTotales = (valor1, valor2) => valor1 + valor2;
-//     return subtotales.reduce(sumaSubTotales);
-// }
+function sumarArraySubTotales () {
+    const subTotalesArray = JSON.parse(localStorage.getItem('subTot'));
+    let suma = (valor1, valor2) => valor1 + valor2; 
+    console.log(subTotalesArray.reduce(suma))
+}
+
+
 
 
 
