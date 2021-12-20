@@ -87,6 +87,7 @@ fetch ('../JSON/productos.json')
                 `
             })
             barrilSelect ();
+            eliminarDelCarrito ();
             sumarArraySubTotales ();
         }
     })
@@ -120,6 +121,20 @@ fetch ('../JSON/productos.json')
         }
     })
 
+    //eliminar del carrito
+    const eliminarDelCarrito = () => {
+        const dataProductosCarrito = JSON.parse(localStorage.getItem('carrito'));
+        dataProductosCarrito.forEach((producto, indice) => {
+            document.getElementById(`eliminar_carrito${indice}`).addEventListener ('click', () => {
+                carritoCanvas.parentNode.removeChild(carritoCanvas)
+                estilos.splice(indice,1)
+                arraySubTotales.splice(indice,1)
+                localStorage.setItem('carrito', JSON.stringify(estilos));
+                localStorage.setItem('subTot', JSON.stringify(arraySubTotales));
+            })
+        })
+    }
+
 //funcion para cargar el barril seleccionado y calcular el precio de cada articulo
 const barrilSelect = () => {
     const dataProductosCarrito = JSON.parse(localStorage.getItem('carrito'));
@@ -140,7 +155,7 @@ const barrilSelect = () => {
 function sumarArraySubTotales () {
     const subTotalesArray = JSON.parse(localStorage.getItem('subTot'));
     let suma = (valor1, valor2) => valor1 + valor2; 
-    // console.log(subTotalesArray.reduce(suma))
     return subTotalesArray.reduce(suma);
 }
+
 
