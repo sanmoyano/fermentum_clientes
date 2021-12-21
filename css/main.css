@@ -12,7 +12,9 @@
   #canvas_carrito #boton_carrito {
     margin: 15px; }
   #canvas_carrito .card-body {
-    margin: 12px; }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
   #canvas_carrito #litros_pedidos {
     display: flex;
     justify-content: space-between; }
@@ -20,8 +22,15 @@
       margin: 0px 10px; }
   #canvas_carrito #total_carrito {
     margin: 12px; }
+    #canvas_carrito #total_carrito p {
+      font-size: 16px;
+      margin-bottom: 0px; }
+    #canvas_carrito #total_carrito h4 {
+      margin-top: 12px;
+      margin-bottom: 3px; }
   #canvas_carrito #finalizar_compra {
-    margin: 12px; }
+    margin: 12px;
+    margin-top: 0px; }
 
 .card-img-top {
   margin-top: 12px; }

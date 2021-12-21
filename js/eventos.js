@@ -1,7 +1,8 @@
 //VARIABLES
-let btnMostrarPedido = document.getElementById ('boton_mostrar');//boton "Mostrar pedido"
-let divCanvasCarrito = document.getElementById ('producto_carrito');//seccion antes de las cards del carrito
-let btnCalcTotal = document.getElementById ('boton_total');//boton "Calcular pedido"
+let btnMostrarPedido = document.getElementById ('boton_mostrar'); //boton "Mostrar pedido"
+let divCanvasCarrito = document.getElementById ('producto_carrito'); //seccion antes de las cards del carrito
+let divTotalCarrito = document.getElementById ('total_carrito'); //seccion donde esta el boton "Calcular pedido"
+let btnCalcTotal = document.getElementById ('boton_total'); //boton "Calcular pedido"
 
 //MOSTRAR PEDIDO
 // btnMostrarPedido.addEventListener ('click', () => console.log("click"))
@@ -32,7 +33,7 @@ btnMostrarPedido.addEventListener('click', () => {
                             <div id="litros_pedidos">
                                 <div class="dropdown">
                                     <label>
-                                        <select id="select_barril${indice}" class="btn btn-secondary" style="margin-left: 10px; margin-right: 10px;">
+                                        <select id="select_barril${indice}" class="btn btn-secondary" style="margin-right: 10px;">
                                             <option value="none">Selec. barril</option>
                                             <option id="select_litros" value="10">${estilo.barril10} litros</option>
                                             <option id="select_litros" value="20">${estilo.barril20} litros</option>
@@ -41,8 +42,8 @@ btnMostrarPedido.addEventListener('click', () => {
                                         </select>
                                     </label>
                                     <!-- eliminar del carrito  -->
-                                    <button id="eliminar_carrito${indice}" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
                                 </div>
+                                <button id="eliminar_carrito${indice}" class="btn btn-danger" style="margin-right: 10px;"><i class="fas fa-times-circle"></i></button>
                             </div>
                         </div>
                     </div>
@@ -52,7 +53,6 @@ btnMostrarPedido.addEventListener('click', () => {
         });
 
         seleccionarBarril ();
-        sumaSubTotales ();
         mostrarTotal ();
     };
 });
@@ -88,10 +88,16 @@ const mostrarTotal = () => {
     btnCalcTotal.addEventListener('click', () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
         if (subTotales == null) {
-            document.getElementById('total_carrito').append('<h4>Total: $0,00 </h4>');
+            alert("Seleccione barriles")
         } else {
-            document.getElementById('total_carrito').append(`<button class="btn btn-dark">`)
+            let h4 = document.createElement("h4");
+            h4.innerHTML += `
+                <h4> Total: $${sumaSubTotales()} </h4>
+                <p> Los precios incluyen IVA e impuestos al acohol. </p>
+            `
+            divTotalCarrito.appendChild(h4);
         }
+        
     });
 };
 

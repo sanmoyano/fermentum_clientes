@@ -6,7 +6,9 @@
         margin: 15px;
     }
     .card-body {
-        margin: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
     #litros_pedidos {
         display: flex;
@@ -17,9 +19,18 @@
     }
     #total_carrito {
         margin: 12px;
+        p {
+            font-size: 16px;
+            margin-bottom: 0px;
+        }
+        h4 {
+            margin-top: 12px;
+            margin-bottom: 3px;
+        }
     }
     #finalizar_compra {
         margin: 12px;
+        margin-top: 0px;
     }
 }
 .card-img-top {
