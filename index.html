@@ -59,42 +59,14 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 
-                <!-- producto en el carrito -->
+                <!-- productos en el canvas carrito -->
                 <div id="producto_carrito" class="offcanvas-body">
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="./images/1-golden.jpg" class="img-fluid rounded-start">
-                            </div>
-                            <div class="col-md-8">
-                                <!-- card del carrito descrip  -->
-                                <div class="card-body">
-                                        <h5 class="card-title">Estilo selec</h5>
-                                        <p class="card-title">$precio /L</p>
-
-                                    <!-- selec barril -->
-                                    <div id="litros_pedidos">
-                                        <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Seleccionar Barril</button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li class="dropdown-item" href="#"> 10 litros</li>
-                                                    <li class="dropdown-item" href="#"> 20 litros</li>
-                                                    <li class="dropdown-item" href="#"> 30 litros</li>
-                                                    <li class="dropdown-item" href="#"> 50 litros</li>
-                                                </ul>
-                                        </div>
-                                        <!-- eliminar del carrito  -->
-                                        <button id="eliminar_carrito" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- cards del carrito en el canvas -->
                 </div>
                 <!-- total a pagar  -->
                 <div id="total_carrito">
-                    <h2>TOTAL: </h2>
+                    <button type="button" class="btn btn-primary" id="boton_total">Calcular pedido</button>
+                    <h2 style="margin: 2px;">TOTAL: </h2>
                 </div>
                 <!-- finalizar compra -->
                 <button type="button" class="btn btn-success" id="finalizar_compra">Finalizar compra</button>

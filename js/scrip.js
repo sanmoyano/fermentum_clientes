@@ -19,7 +19,7 @@ fetch('../JSON/productos.json')
                 <button id="agregar_carrito${indice}" class="btn btn-warning" style="margin-top: 10px;">Agregar estilo</button>
             </div>
             `
-        })
+        });
 
         //recorro el array de nuevo para agregar productos
         dataEstilos.forEach((estilo, indice) => {
@@ -36,10 +36,10 @@ fetch('../JSON/productos.json')
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                     localStorage.setItem('carrito', JSON.stringify(estilos)); // creo el array y lo cargo al LS junto con el objeto
                     alert("Agregaste un nuevo estilo al pedido");
-                }
-            })
-        })
-    })
+                };
+            });
+        });
+    });
 
 
 
@@ -49,8 +49,7 @@ fetch('../JSON/productos.json')
 // let carritoCanvas = document.getElementById('producto_carrito');//canvas carrito
 // let btnFinalizar = document.getElementById('finalizar_compra');//boton finalizar 
 // let divTotalCarrito = document.getElementById('total_carrito');//total
-// //variable acumulador total
-// let acumTot = 0;
+
 // //array de sub totales de cada producto en el carrito 
 // let arraySubTotales = []
 
