@@ -5,6 +5,22 @@
     #boton_carrito {
         margin: 15px;
     }
+    .card-body {
+        margin: 12px;
+    }
+    #litros_pedidos {
+        display: flex;
+        justify-content: space-between;
+        #eliminar_carrito {
+            margin: 0px 10px;
+        }
+    }
+    #total_carrito {
+        margin: 12px;
+    }
+    #finalizar_compra {
+        margin: 12px;
+    }
 }
 .card-img-top {
     margin-top: 12px;

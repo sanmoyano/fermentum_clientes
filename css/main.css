@@ -11,6 +11,17 @@
   justify-content: center; }
   #canvas_carrito #boton_carrito {
     margin: 15px; }
+  #canvas_carrito .card-body {
+    margin: 12px; }
+  #canvas_carrito #litros_pedidos {
+    display: flex;
+    justify-content: space-between; }
+    #canvas_carrito #litros_pedidos #eliminar_carrito {
+      margin: 0px 10px; }
+  #canvas_carrito #total_carrito {
+    margin: 12px; }
+  #canvas_carrito #finalizar_compra {
+    margin: 12px; }
 
 .card-img-top {
   margin-top: 12px; }

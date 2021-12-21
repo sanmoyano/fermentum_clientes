@@ -14,5 +14,8 @@ class Cerveza {
         this.cant = 1;
     }
 }
+
 //array para guardar los productos
 let estilos = [];
+//array para cargar subtotales de barril*precio
+let subTotales = [];
