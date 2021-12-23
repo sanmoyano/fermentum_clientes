@@ -1,4 +1,4 @@
-//VARIABLES
+   //VARIABLES
 let btnMostrarPedido = document.getElementById ('boton_mostrar'); //boton "Mostrar pedido"
 let divCanvasCarrito = document.getElementById ('producto_carrito'); //seccion antes de las cards del carrito
 let divTotalCarrito = document.getElementById ('total_carrito'); //seccion donde esta el boton "Calcular pedido"
@@ -26,25 +26,12 @@ btnMostrarPedido.addEventListener('click', () => {
                     <div class="col-md-8">
                         <!-- card del carrito descrip  -->
                         <div class="card-body">
-                                <h5 class="card-title">${estilo.nombre}</h5>
-                                <p class="card-title">$${estilo.precio}</p>
-
-                            <!-- selec barril -->
-                            <div id="litros_pedidos">
-                                <div class="dropdown">
-                                    <label>
-                                        <select id="select_barril${indice}" class="btn btn-secondary" style="margin-right: 10px;">
-                                            <option value="none">Selec. barril</option>
-                                            <option id="select_litros" value="10">${estilo.barril10} litros</option>
-                                            <option id="select_litros" value="20">${estilo.barril20} litros</option>
-                                            <option id="select_litros" value="30">${estilo.barril30} litros</option>
-                                            <option id="select_litros" value="50">${estilo.barril50} litros</option>
-                                        </select>
-                                    </label>
-                                    <!-- eliminar del carrito  -->
-                                </div>
-                                <button id="eliminar_carrito${indice}" class="btn btn-danger" style="margin-right: 10px;"><i class="fas fa-times-circle"></i></button>
+                            <div class="titulo-estilo">
+                                <h5 class="card-title">${estilo.nombre}</h5>    
+                                <button id="eliminar_carrito${indice}" class="btn btn-danger" style="margin: 10px;"><i class="fas fa-times-circle"></i></button>
                             </div>
+                                <p class="card-title">$${estilo.precio}</p>
+                                <p class="card-title" id="valor_barril">Barril seleccionado</p>
                         </div>
                     </div>
                 </div>
@@ -52,20 +39,20 @@ btnMostrarPedido.addEventListener('click', () => {
             `
         });
 
-        seleccionarBarril ();
         mostrarTotal ();
     };
 });
 
 //FUNCIONES
 //funcion seleccionar barril 
-const seleccionarBarril = () => {
+/*const seleccionarBarril = () => {
     const estilosEnCarrito = JSON.parse(localStorage.getItem('carrito'));//consulto los estilos en carrito del LS y los asigno a una variable
     //recorro esos estilos del carrito del LS
     estilosEnCarrito.forEach ((estilo, indice) => {
         let dropSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al dropdown y lo asigno a una variable
         //asigno evento change para seleccionar las opcione
         dropSelectBarril.addEventListener ('change', (e) => {
+            //aca capaz va un if para preguntar si el precio ya esta cargado en el LS, si no esta lo creo y si esta, lo reemplazo//
             const barrilSelect = e.target.value; //capturo la seleccion en una variable 
             const estiloSubTot = barrilSelect * estilo.precio; // capturo el resultado de multiplicar precio por la seleccion
             subTotales.push(estiloSubTot); //cargo el subtotal en el array de subTotales
@@ -73,7 +60,7 @@ const seleccionarBarril = () => {
         });
         
     });
-};
+};*/
 
 //funcion sumar sub totales del array subTotales
 const sumaSubTotales = () => {

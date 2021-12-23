@@ -1,6 +1,6 @@
 //VARIABLES
 let divCardCervezas = document.getElementById('card_cerveza'); //card de todas las cervezas
-
+let barrilPedido;
 //CONSULTA DE MI ARCHIVO JSON 
 fetch('../JSON/productos.json')
     .then(promesa => promesa.json())
@@ -16,9 +16,38 @@ fetch('../JSON/productos.json')
                     <h4 class="card-text">Alcohol: ${estilo.alcohol}</h4>
                     <h4 class="card-text">Precio/L: $${estilo.precio}</h4>
                 </div>
+
+                <!-- selec barril -->
+                            <div id="litros_pedidos">
+                                <div class="dropdown">
+                                    <label>
+                                        <select id="select_barril${indice}" class="btn btn-secondary" style="margin-top: 12px;">
+                                            <option value="none">Selec. barril</option>
+                                            <option id="select_litros" value="10">10 litros</option>
+                                            <option id="select_litros" value="20">20 litros</option>
+                                            <option id="select_litros" value="30">30 litros</option>
+                                            <option id="select_litros" value="50">50 litros</option>
+                                        </select>
+                                    </label>
+                                    <!-- eliminar del carrito  -->
+                                </div>
+                            </div>
                 <button id="agregar_carrito${indice}" class="btn btn-warning" style="margin-top: 10px;">Agregar estilo</button>
             </div>
             `
+            
+        });
+
+        //recorro el array para seleccionar el estilo
+        dataEstilos.forEach((estilo, indice) => {
+            let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable
+            // dropDownSelectBarril.addEventListener ('change', (e) => console.log(`eligio este ${e.target.value}`))
+            dropDownSelectBarril.addEventListener ('change', (e) => {
+                let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto   
+                Object.defineProperty(estilo,'litros', {
+                    
+                })
+            });
         });
 
         //recorro el array de nuevo para agregar productos
@@ -32,7 +61,7 @@ fetch('../JSON/productos.json')
                     estilos[buscoCervezaEnArrayEstilos].cant ++; //si la cerveza esta, sumo las cantidades 
                     localStorage.setItem('carrito', JSON.stringify(estilos)); //creo el array y lo cargo al LS junto con el objeto
                 } else { 
-                    let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.barril10, estilo.barril20, estilo.barril30, estilo.barril50); //si la cerveza no esta, la creo
+                    let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                     localStorage.setItem('carrito', JSON.stringify(estilos)); // creo el array y lo cargo al LS junto con el objeto
                     alert("Agregaste un nuevo estilo al pedido");
@@ -40,6 +69,7 @@ fetch('../JSON/productos.json')
             });
         });
     });
+    
 
 
 

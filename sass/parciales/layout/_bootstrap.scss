@@ -9,6 +9,15 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        .titulo-estilo {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-title {
+            margin-bottom: 0px;
+        }
     }
     #litros_pedidos {
         display: flex;

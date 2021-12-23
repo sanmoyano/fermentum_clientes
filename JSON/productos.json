@@ -6,11 +6,7 @@
         "alcohol": "4.6",
         "precio": 190,
         "stock": 1000,
-        "img": "1-golden.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "1-golden.jpg"
     },
     {
         "id": "c2",
@@ -19,11 +15,7 @@
         "alcohol": "4.6",
         "precio": 190,
         "stock": 1000,
-        "img": "2-scotch.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "2-scotch.jpg"
     },
     {
         "id": "c3",
@@ -32,11 +24,7 @@
         "alcohol": "7.4",
         "precio": 210,
         "stock": 1000,
-        "img": "3-strong.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "3-strong.jpg"
     },
     {
         "id": "c4",
@@ -45,11 +33,7 @@
         "alcohol": "5.5",
         "precio": 220,
         "stock": 1000,
-        "img": "4-apa.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "4-apa.jpg"
     },
     {
         "id": "c5",
@@ -58,11 +42,7 @@
         "alcohol": "5.5",
         "precio": 220,
         "stock": 1000,
-        "img": "5-aaa.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "5-aaa.jpg"
     },
     {
         "id": "c6",
@@ -71,11 +51,7 @@
         "alcohol": "4.0",
         "precio": 220,
         "stock": 1000,
-        "img": "6-session.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "6-session.jpg"
     },
     {
         "id": "c7",
@@ -84,11 +60,7 @@
         "alcohol": "6.2",
         "precio": 250,
         "stock": 1000,
-        "img": "7-caramel.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "7-caramel.jpg"
     },
     {
         "id": "c8",
@@ -97,11 +69,7 @@
         "alcohol": "6.4",
         "precio": 250,
         "stock": 1000,
-        "img": "8-american.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "8-american.jpg"
     },
     {
         "id": "c9",
@@ -110,10 +78,6 @@
         "alcohol": "6.6",
         "precio": 250,
         "stock": 1000,
-        "img": "9-juicy.jpg",
-        "barril10": 10,
-        "barril20": 20,
-        "barril30": 30,
-        "barril50": 50
+        "img": "9-juicy.jpg"
     }
 ]
