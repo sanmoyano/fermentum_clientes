@@ -41,20 +41,21 @@ fetch('../JSON/productos.json')
         //recorro el array para seleccionar el estilo
         dataEstilos.forEach((estilo, indice) => {
             let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable
-            // dropDownSelectBarril.addEventListener ('change', (e) => console.log(`eligio este ${e.target.value}`))
             dropDownSelectBarril.addEventListener ('change', (e) => {
-                let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto   
-                Object.defineProperty(estilo,'litros', {
-                    
-                })
+                let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto  
+                estilo["litros"] = barrilPedido 
+                // if (estilos.find(cerveza => cerveza.litros == estilo.litros)) {
+                //     let buscoLitrosEnArray = estilos.findIndex ()
+                // }
             });
         });
 
-        //recorro el array de nuevo para agregar productos
+        //recorro el array de nuevo para agregar productos al carrito
         dataEstilos.forEach((estilo, indice) => {
             //llamo al boton agregar estilo y lo meto en una variable 
             let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
             btnAgregarCarrito.addEventListener ('click', () => {
+                carritoItems ();
                 //consultar si la cerveza del array se encuentra en el LS
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
@@ -64,13 +65,27 @@ fetch('../JSON/productos.json')
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                     localStorage.setItem('carrito', JSON.stringify(estilos)); // creo el array y lo cargo al LS junto con el objeto
-                    alert("Agregaste un nuevo estilo al pedido");
                 };
             });
         });
-    });
-    
+    });    
 
+//FUNCIONES
+//sumar items en boton "mostrar pedidos"
+const carritoItems = () => {
+    let estiloItems = localStorage.getItem('carritoItems');
+    estiloItems = parseInt(estiloItems); 
+    if (estiloItems) {
+        localStorage.setItem('carritoItems', estiloItems+ 1);
+        document.querySelector('#boton_mostrar span').textContent = estiloItems + 1;
+        alert("Agregaste un nuevo estilo al pedido");
+
+    } else {
+        localStorage.setItem('carritoItems', 1)
+        alert("Agregaste un nuevo estilo al pedido");
+        document.querySelector('#boton_mostrar span').textContent = 1;
+    }
+}
 
 
 // //variables para manejar los elementos html

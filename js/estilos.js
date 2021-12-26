@@ -1,5 +1,5 @@
 class Cerveza {
-    constructor (id, nombre, ibu, alcohol, precio, stock, img) {
+    constructor (id, nombre, ibu, alcohol, precio, stock, img, litros) {
         this.id = id;
         this.nombre = nombre;
         this.ibu = ibu;
@@ -7,8 +7,13 @@ class Cerveza {
         this.precio = precio;
         this.stock = stock;
         this.img = img;
-        this.litros = 100;
+        this.litros = litros;
         this.cant = 1;
+    }
+    //metodos
+    subTotal () {
+        let subTot = this.precio * this.litros
+        subTotales.push(subTot)
     }
 }
 

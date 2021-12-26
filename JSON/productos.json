@@ -6,7 +6,8 @@
         "alcohol": "4.6",
         "precio": 190,
         "stock": 1000,
-        "img": "1-golden.jpg"
+        "img": "1-golden.jpg",
+        "litros": 0
     },
     {
         "id": "c2",
@@ -15,7 +16,8 @@
         "alcohol": "4.6",
         "precio": 190,
         "stock": 1000,
-        "img": "2-scotch.jpg"
+        "img": "2-scotch.jpg",
+        "litros": 0
     },
     {
         "id": "c3",
@@ -24,7 +26,8 @@
         "alcohol": "7.4",
         "precio": 210,
         "stock": 1000,
-        "img": "3-strong.jpg"
+        "img": "3-strong.jpg",
+        "litros": 0
     },
     {
         "id": "c4",
@@ -33,7 +36,8 @@
         "alcohol": "5.5",
         "precio": 220,
         "stock": 1000,
-        "img": "4-apa.jpg"
+        "img": "4-apa.jpg",
+        "litros": 0
     },
     {
         "id": "c5",
@@ -42,7 +46,8 @@
         "alcohol": "5.5",
         "precio": 220,
         "stock": 1000,
-        "img": "5-aaa.jpg"
+        "img": "5-aaa.jpg",
+        "litros": 0
     },
     {
         "id": "c6",
@@ -51,7 +56,8 @@
         "alcohol": "4.0",
         "precio": 220,
         "stock": 1000,
-        "img": "6-session.jpg"
+        "img": "6-session.jpg",
+        "litros": 0
     },
     {
         "id": "c7",
@@ -60,7 +66,8 @@
         "alcohol": "6.2",
         "precio": 250,
         "stock": 1000,
-        "img": "7-caramel.jpg"
+        "img": "7-caramel.jpg",
+        "litros": 0
     },
     {
         "id": "c8",
@@ -69,7 +76,8 @@
         "alcohol": "6.4",
         "precio": 250,
         "stock": 1000,
-        "img": "8-american.jpg"
+        "img": "8-american.jpg",
+        "litros": 0
     },
     {
         "id": "c9",
@@ -78,6 +86,7 @@
         "alcohol": "6.6",
         "precio": 250,
         "stock": 1000,
-        "img": "9-juicy.jpg"
+        "img": "9-juicy.jpg",
+        "litros": 0
     }
 ]
