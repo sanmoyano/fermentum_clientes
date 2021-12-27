@@ -40,16 +40,10 @@ btnMostrarPedido.addEventListener('click', () => {
         });
 
         mostrarTotal ();
-        multiBarril ();
     };
 });
 
 //FUNCIONES
-//funcion multiplicar precio por barril seleccionado 
-const multiBarril = (estilo) => {
-    let cervezasEnStorage = JSON.parse(localStorage.getItem('carrito'))
-
-}
 //funcion sumar sub totales del array subTotales
 const sumaSubTotales = () => {
     const subTotales = JSON.parse(localStorage.getItem('subTotal'));//consulto todos los subTotales y los asigno a una variable
@@ -72,7 +66,6 @@ const mostrarTotal = () => {
             `
             divTotalCarrito.appendChild(h4);
         }
-        
     });
 };
 

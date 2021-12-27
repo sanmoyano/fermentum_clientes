@@ -44,6 +44,9 @@ fetch('../JSON/productos.json')
             dropDownSelectBarril.addEventListener ('change', (e) => {
                 let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto  
                 estilo["litros"] = barrilPedido 
+                let subTotal = estilo.precio * barrilPedido
+                subTotales.push(subTotal)
+                localStorage.setItem('subTotal', JSON.stringify(subTotales))
                 // if (estilos.find(cerveza => cerveza.litros == estilo.litros)) {
                 //     let buscoLitrosEnArray = estilos.findIndex ()
                 // }
@@ -55,7 +58,7 @@ fetch('../JSON/productos.json')
             //llamo al boton agregar estilo y lo meto en una variable 
             let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
             btnAgregarCarrito.addEventListener ('click', () => {
-                carritoItems ();
+                carritoItems (); 
                 //consultar si la cerveza del array se encuentra en el LS
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);

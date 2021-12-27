@@ -10,16 +10,11 @@ class Cerveza {
         this.litros = litros;
         this.cant = 1;
     }
-    //metodos
-    subTotal () {
-        let subTot = this.precio * this.litros
-        subTotales.push(subTot)
-    }
 }
 
 //array para guardar los productos
 let estilos = [];
 //array para cargar subtotales de barril*precio
-let subTotales = [0];
+let subTotales = [];
 //array litros pedidos 
 let litrosPedidos = [];
