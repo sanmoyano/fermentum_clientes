@@ -3,6 +3,7 @@ let btnMostrarPedido = document.getElementById ('boton_mostrar'); //boton "Mostr
 let divCanvasCarrito = document.getElementById ('producto_carrito'); //seccion antes de las cards del carrito
 let divTotalCarrito = document.getElementById ('total_carrito'); //seccion donde esta el boton "Calcular pedido"
 let btnCalcTotal = document.getElementById ('boton_total'); //boton "Calcular pedido"
+let btnFinalizar = document.getElementById('finalizar_compra'); //boton "finalizar compra"
 
 //MOSTRAR PEDIDO
 // btnMostrarPedido.addEventListener ('click', () => console.log("click"))
@@ -15,7 +16,7 @@ btnMostrarPedido.addEventListener('click', () => {
         `
     } else {
         divCanvasCarrito.innerHTML = "";//para que no se repitan los productos
-        //recorro el array de cervezas en el LS y lo cargo en el canvas del html
+        //recorro el array de cervezas edivCanvasCarrito.innerHTML = "";n el LS y lo cargo en el canvas del html
         cervezasEnStorage.forEach((estilo, indice) => {
             divCanvasCarrito.innerHTML += `
             <div id="cerveza${indice}" class="card mb-3" style="max-width: 540px;">
@@ -43,6 +44,14 @@ btnMostrarPedido.addEventListener('click', () => {
     };
 });
 
+// btnFinalizar.addEventListener('click', () => console.log("click"));
+btnFinalizar.addEventListener ('click', () => {
+    divCanvasCarrito.innerHTML = `
+        <h6>No se realizo ningún pedido aún.</h6>`
+    localStorage.clear('carrito, subTotal, carritoItems');
+    alert("Gracias por su compra");
+})
+
 //FUNCIONES
 //funcion sumar sub totales del array subTotales
 const sumaSubTotales = () => {
@@ -56,17 +65,18 @@ const mostrarTotal = () => {
     // btnCalcTotal.addEventListener('click', () => console.log("clck"))
     btnCalcTotal.addEventListener('click', () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
+        let h4 = document.createElement("h4");
         if (subTotales == null) {
             alert("Seleccione barriles")
         } else {
-            let h4 = document.createElement("h4");
             h4.innerHTML += `
-                <h4> Total: $${sumaSubTotales()} </h4>
-                <p> Los precios incluyen IVA e impuestos al acohol. </p>
+            <h4> Total: $${sumaSubTotales()} </h4>
+            <p> Los precios incluyen IVA e impuestos al acohol. </p>
             `
             divTotalCarrito.appendChild(h4);
         }
     });
 };
+
 
 
