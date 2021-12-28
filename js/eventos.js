@@ -44,14 +44,6 @@ btnMostrarPedido.addEventListener('click', () => {
     };
 });
 
-// btnFinalizar.addEventListener('click', () => console.log("click"));
-btnFinalizar.addEventListener ('click', () => {
-    divCanvasCarrito.innerHTML = `
-        <h6>No se realizo ningún pedido aún.</h6>`
-    localStorage.clear('carrito, subTotal, carritoItems');
-    alert("Gracias por su compra");
-})
-
 //FUNCIONES
 //funcion sumar sub totales del array subTotales
 const sumaSubTotales = () => {
@@ -70,7 +62,7 @@ const mostrarTotal = () => {
             alert("Seleccione barriles")
         } else {
             h4.innerHTML += `
-            <h4> Total: $${sumaSubTotales()} </h4>
+            <h4 id="h4_total"> Total: $${sumaSubTotales()} </h4>
             <p> Los precios incluyen IVA e impuestos al acohol. </p>
             `
             divTotalCarrito.appendChild(h4);
@@ -78,5 +70,20 @@ const mostrarTotal = () => {
     });
 };
 
+// btnFinalizar.addEventListener('click', () => console.log("click"));
+btnFinalizar.addEventListener ('click', () => {
+    divCanvasCarrito.innerHTML = `
+        <h6>No se realizo ningún pedido aún.</h6>`
+    localStorage.clear('carrito, subTotal, carritoItems');
+    alert("Gracias por su compra");
+})
 
 
+
+function limpiar () {
+    $(() => {
+        $('#boton_total').click(function totalApagar () {
+            $('#total_carrito').empty()
+        })
+    })    
+}
