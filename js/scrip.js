@@ -41,15 +41,27 @@ fetch('../JSON/productos.json')
         //recorro el array para seleccionar el estilo
         dataEstilos.forEach((estilo, indice) => {
             let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable
+            // dropDownSelectBarril.addEventListener ('change', (e) => console.log (`Selecciono ${parseInt(e.target.value)}`));
             dropDownSelectBarril.addEventListener ('change', (e) => {
-                let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto  
-                estilo["litros"] = barrilPedido 
-                let subTotal = estilo.precio * barrilPedido
-                subTotales.push(subTotal)
-                localStorage.setItem('subTotal', JSON.stringify(subTotales))
-                // if (estilos.find(cerveza => cerveza.litros == estilo.litros)) {
-                //     let buscoLitrosEnArray = estilos.findIndex ()
-                // }
+                let dropLitros = parseInt(e.target.value); //capturo el valor seleccionado de e en una variable.
+                // console.log(estilo.litros)
+                if(estilos.find(estilo => estilo.litros != 0)){ 
+                    let indexLitros = estilos.findIndex(cerveza => cerveza.litros != 0);
+                    estilos[indexLitros].litros = dropLitros;
+                    estilo['litros'] = dropLitros;
+                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                    
+                } else {
+                    estilo['litros'] = dropLitros;
+                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                }
+                
+                // let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto  
+                // estilo['litros'] = barrilPedido 
+                // let subTotal = estilo.precio * barrilPedido
+                // subTotales.push(subTotal)
+                // localStorage.setItem('subTotal', JSON.stringify(subTotales))
+                
             });
         });
 
@@ -62,7 +74,7 @@ fetch('../JSON/productos.json')
                 //consultar si la cerveza del array se encuentra en el LS
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
-                    estilos[buscoCervezaEnArrayEstilos].cant ++; //si la cerveza esta, sumo las cantidades 
+                    estilos[buscoCervezaEnArrayEstilos].cant; //si la cerveza esta, sumo las cantidades 
                     localStorage.setItem('carrito', JSON.stringify(estilos)); //creo el array y lo cargo al LS junto con el objeto
                 } else { 
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
