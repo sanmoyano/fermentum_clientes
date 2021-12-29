@@ -76,14 +76,9 @@ btnFinalizar.addEventListener ('click', () => {
         <h6>No se realizo ningún pedido aún.</h6>`
     localStorage.clear('carrito, subTotal, carritoItems');
     alert("Gracias por su compra");
-})
-
-
-
-function limpiar () {
     $(() => {
-        $('#boton_total').click(function totalApagar () {
-            $('#total_carrito').empty()
-        })
-    })    
-}
+        $('#total_carrito').empty()
+    })
+});
+
+
