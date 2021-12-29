@@ -16,7 +16,7 @@ btnMostrarPedido.addEventListener('click', () => {
         `
     } else {
         divCanvasCarrito.innerHTML = "";//para que no se repitan los productos
-        //recorro el array de cervezas edivCanvasCarrito.innerHTML = "";n el LS y lo cargo en el canvas del html
+        //recorro el array de cervezas en el LS y lo cargo en el canvas del html
         cervezasEnStorage.forEach((estilo, indice) => {
             divCanvasCarrito.innerHTML += `
             <div id="cerveza${indice}" class="card mb-3" style="max-width: 540px;">
