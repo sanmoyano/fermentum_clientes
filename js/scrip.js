@@ -44,24 +44,22 @@ fetch('../JSON/productos.json')
             // dropDownSelectBarril.addEventListener ('change', (e) => console.log (`Selecciono ${parseInt(e.target.value)}`));
             dropDownSelectBarril.addEventListener ('change', (e) => {
                 let dropLitros = parseInt(e.target.value); //capturo el valor seleccionado de e en una variable.
-                // console.log(estilo.litros)
-                if(estilos.find(estilo => estilo.litros != 0)){ 
+                if(estilos.find(estilo => estilo.litros == 0)){ 
+                    let indexLitros = estilos.findIndex(cerveza => cerveza.litros == 0);
+                    estilos[indexLitros].litros = dropLitros;
+                    estilo['litros'] = dropLitros;
+                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                
+                } else if (estilos.find(estilo => estilo.litros != 0))  {
                     let indexLitros = estilos.findIndex(cerveza => cerveza.litros != 0);
                     estilos[indexLitros].litros = dropLitros;
                     estilo['litros'] = dropLitros;
                     localStorage.setItem('carrito', JSON.stringify(estilos));
-                    
+
                 } else {
                     estilo['litros'] = dropLitros;
                     localStorage.setItem('carrito', JSON.stringify(estilos));
                 }
-                
-                // let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto  
-                // estilo['litros'] = barrilPedido 
-                // let subTotal = estilo.precio * barrilPedido
-                // subTotales.push(subTotal)
-                // localStorage.setItem('subTotal', JSON.stringify(subTotales))
-                
             });
         });
 
