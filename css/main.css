@@ -38,6 +38,9 @@
   #canvas_carrito #finalizar_compra {
     margin: 12px;
     margin-top: 0px; }
+  #canvas_carrito #boton_total {
+    width: 40%;
+    margin: 12px; }
 
 .card-img-top {
   margin-top: 12px; }
