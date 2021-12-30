@@ -41,20 +41,22 @@ fetch('../JSON/productos.json')
         //recorro el array para seleccionar el estilo
         dataEstilos.forEach((estilo, indice) => {
             let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable
-            // dropDownSelectBarril.addEventListener ('change', (e) => console.log (`Selecciono ${parseInt(e.target.value)}`));
+            // dropDownSelectBarril.addEventListener ('change', (e) => console.log (`Selecciono ${estilo.nombre} ${parseInt(e.target.value)}`));
             dropDownSelectBarril.addEventListener ('change', (e) => {
                 let dropLitros = parseInt(e.target.value); //capturo el valor seleccionado de e en una variable.
-                if(estilos.find(estilo => estilo.litros == 0)){ 
+                if(estilos.find(estilo => estilo.litros == 0 )){ 
                     let indexLitros = estilos.findIndex(cerveza => cerveza.litros == 0);
+                    console.log(indexLitros)
                     estilos[indexLitros].litros = dropLitros;
                     estilo['litros'] = dropLitros;
-                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                    localStorage.setItem('carrito', JSON.stringify(estilos)); //si es igual a 0 lo agrego
                 
                 } else if (estilos.find(estilo => estilo.litros != 0))  {
                     let indexLitros = estilos.findIndex(cerveza => cerveza.litros != 0);
+                    console.log(indexLitros)
                     estilos[indexLitros].litros = dropLitros;
                     estilo['litros'] = dropLitros;
-                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                    localStorage.setItem('carrito', JSON.stringify(estilos)); //si es distinto de 0 o si ya hay un valor antes lo reemplazo
 
                 } else {
                     estilo['litros'] = dropLitros;
