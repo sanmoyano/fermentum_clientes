@@ -37,31 +37,55 @@ fetch('../JSON/productos.json')
             `
             
         });
-
+        
         //recorro el array para seleccionar el estilo
         dataEstilos.forEach((estilo, indice) => {
             let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable
-            // dropDownSelectBarril.addEventListener ('change', (e) => console.log (`Selecciono ${estilo.nombre} ${parseInt(e.target.value)}`));
+            
+            // dropDownSelectBarril.addEventListener ('change', (e) => console.log (`Selecciono ${estilo.nombre} ${parseInt(e.target.value)} litros`));
+            
             dropDownSelectBarril.addEventListener ('change', (e) => {
-                let dropLitros = parseInt(e.target.value); //capturo el valor seleccionado de e en una variable.
-                if(estilos.find(estilo => estilo.litros == 0 )){ 
-                    let indexLitros = estilos.findIndex(cerveza => cerveza.litros == 0);
-                    console.log(indexLitros)
-                    estilos[indexLitros].litros = dropLitros;
-                    estilo['litros'] = dropLitros;
-                    localStorage.setItem('carrito', JSON.stringify(estilos)); //si es igual a 0 lo agrego
-                
-                } else if (estilos.find(estilo => estilo.litros != 0))  {
-                    let indexLitros = estilos.findIndex(cerveza => cerveza.litros != 0);
-                    console.log(indexLitros)
-                    estilos[indexLitros].litros = dropLitros;
-                    estilo['litros'] = dropLitros;
-                    localStorage.setItem('carrito', JSON.stringify(estilos)); //si es distinto de 0 o si ya hay un valor antes lo reemplazo
-
+                e.preventDefault()
+                let dropLitros = parseInt(e.target.value); //capturo el valor seleccionado de (e) en una variable.
+                // console.log(`Selecciono ${estilo.nombre} ${dropLitros} litros`)
+                let litrosDefault = estilo['litros']
+                let selecBarril = dropLitros + litrosDefault
+                if (litrosDefault == 0) {
+                    estilo['litros'] = selecBarril
                 } else {
-                    estilo['litros'] = dropLitros;
-                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                    let litrosEnCarrito = JSON.parse(localStorage.getItem('carrito'));
+                    // console.log(litrosEnCarrito)
+                    for (let litros of litrosEnCarrito) {
+                        console.log(`los litros que hay son ${litros.litros} de ${litros.nombre}`)
+                        let nuevosLitros = parseInt(e.target.value)
+                        console.log(`nuevos litros ${nuevosLitros}`)
+                        console.log(litros.litros = nuevosLitros)
+                        estilo['litros'] = nuevosLitros
+                        console.log(estilo)
+                        // let cambioLitros = litros.litros = dropLitros
+                        // estilo['litros'] = cambioLitros
+                        // console.log(estilos.splice(litros.indice))
+                        // estilos.push(litros.estilo)
+                        // localStorage.setItem('carrito', JSON.stringify(estilos))
+                    }
+
+
                 }
+
+                // if (estilos.find(estilo => estilo.litros != 0 )){ 
+                //     let indexLitros = estilos.findIndex(cerveza => cerveza.litros != 0);
+                //     estilos[indexLitros].litros = dropLitros;
+                //     console.log(estilo)
+                //     estilo['litros'] = dropLitros;
+                //     localStorage.setItem('carrito', JSON.stringify(estilos)); //si es igual a 0 lo agrego
+                
+                // } else {
+                //     let indexLitros = estilos.findIndex(cerveza => cerveza.litros == 0);
+                //     estilos[indexLitros] = dropLitros;
+                //     estilo['litros'] = dropLitros;
+                //     console.log(estilo)
+                //     localStorage.setItem('carrito', JSON.stringify(estilos));
+                // }
             });
         });
 
@@ -101,6 +125,7 @@ const carritoItems = () => {
         document.querySelector('#boton_mostrar span').textContent = 1;
     }
 }
+
 
 
 

@@ -7,8 +7,8 @@ class Cerveza {
         this.precio = precio;
         this.stock = stock;
         this.img = img;
-        this.litros = litros;
         this.cant = 1;
+        this.litros = litros;
     }
     //metodos
     subTotal () {
