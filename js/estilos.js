@@ -20,3 +20,4 @@ class Cerveza {
 let estilos = [];
 //array para cargar subtotales de barril*precio
 let subTotales = [];
+
