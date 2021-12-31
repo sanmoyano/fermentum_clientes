@@ -79,19 +79,22 @@ fetch('../JSON/productos.json')
 //FUNCIONES
 //sumar items en boton "mostrar pedidos"
 const carritoItems = () => {
-    let estiloItems = parseInt(localStorage.getItem('carritoItems'))
+    let estiloItems = localStorage.getItem('carritoItems');
+    estiloItems = parseInt(estiloItems); 
     console.log(estiloItems)
     if (estiloItems) {
+        alert("Seleccione un barril")
+        
+    } else if (estiloItems) {
         localStorage.setItem('carritoItems', estiloItems + 1);
         document.querySelector('#boton_mostrar span').textContent = estiloItems + 1;
         alert("Agregaste un nuevo estilo al pedido");
 
-    } else if (estiloItems) {
+        
+    } else {
         localStorage.setItem('carritoItems', 1)
         alert("Agregaste un nuevo estilo al pedido");
         document.querySelector('#boton_mostrar span').textContent = 1;
-    } else {
-        alert("Seleccione un barril")
     }
 }
 
