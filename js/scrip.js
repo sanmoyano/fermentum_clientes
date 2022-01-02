@@ -70,7 +70,7 @@ fetch('../JSON/productos.json')
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                 };
-                carritoItems (); //funcion para sumar articulos
+                // carritoItems (); //funcion para sumar articulos
             });
         });
     });    
