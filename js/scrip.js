@@ -37,19 +37,23 @@ fetch('../JSON/productos.json')
             `
             
         });
-
+        
         //recorro el array para seleccionar el estilo
         dataEstilos.forEach((estilo, indice) => {
-            let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable
+            let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable    
             dropDownSelectBarril.addEventListener ('change', (e) => {
-                let barrilPedido = parseInt(e.target.value);// agregar este valor a la propiedad litros del objeto  
-                estilo["litros"] = barrilPedido 
-                let subTotal = estilo.precio * barrilPedido
-                subTotales.push(subTotal)
-                localStorage.setItem('subTotal', JSON.stringify(subTotales))
-                // if (estilos.find(cerveza => cerveza.litros == estilo.litros)) {
-                //     let buscoLitrosEnArray = estilos.findIndex ()
-                // }
+                e.preventDefault()
+                estilo['litros'] = parseInt(e.target.value);
+                //consultar si la cerveza del array se encuentra en el LS
+                if (estilos.find(cerveza => cerveza.nombre == estilo.nombre)) {
+                    let buscoEstilo = estilos.findIndex(cerveza => cerveza.nombre == cerveza.nombre);
+                    estilos[buscoEstilo].litros = parseInt (e.target.value); // remplazo el valor viejo del array por uno nuevo.
+                    localStorage.setItem('carrito',JSON.stringify(estilos));// lo subo al array que ya existe
+                } else {
+                    estilo['litros'] = parseInt(e.target.value);
+                    estilos.push(estilo);
+                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                }
             });
         });
 
@@ -58,37 +62,43 @@ fetch('../JSON/productos.json')
             //llamo al boton agregar estilo y lo meto en una variable 
             let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
             btnAgregarCarrito.addEventListener ('click', () => {
-                carritoItems (); 
                 //consultar si la cerveza del array se encuentra en el LS
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
-                    estilos[buscoCervezaEnArrayEstilos].cant ++; //si la cerveza esta, sumo las cantidades 
-                    localStorage.setItem('carrito', JSON.stringify(estilos)); //creo el array y lo cargo al LS junto con el objeto
+                    estilos[buscoCervezaEnArrayEstilos]
                 } else { 
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
-                    localStorage.setItem('carrito', JSON.stringify(estilos)); // creo el array y lo cargo al LS junto con el objeto
                 };
+                // carritoItems (); //funcion para sumar articulos
             });
         });
     });    
 
 //FUNCIONES
-//sumar items en boton "mostrar pedidos"
-const carritoItems = () => {
-    let estiloItems = localStorage.getItem('carritoItems');
-    estiloItems = parseInt(estiloItems); 
-    if (estiloItems) {
-        localStorage.setItem('carritoItems', estiloItems+ 1);
-        document.querySelector('#boton_mostrar span').textContent = estiloItems + 1;
-        alert("Agregaste un nuevo estilo al pedido");
 
-    } else {
-        localStorage.setItem('carritoItems', 1)
-        alert("Agregaste un nuevo estilo al pedido");
-        document.querySelector('#boton_mostrar span').textContent = 1;
-    }
-}
+
+//sumar articulos en boton "mostrar pedidos"
+// const carritoItems = () => {
+//     let carritoLocal = JSON.parse(localStorage.getItem('carrito'))
+//     let numeroItem = JSON.parse(localStorage.getItem('itemCarrito'))
+//     console.log(carritoLocal)
+//     console.log(carritoLocal.find(cerveza => cerveza.nombre))
+// }
+// // const carritoItems = () => {
+// //     let numeroItem = JSON.parse(localStorage.getItem('itemCarrito'))
+// //     let findEstilo = estilos.find(cerveza => cerveza.nombre == estilo.nombre)
+// //     if (findEstilo) {
+// //         localStorage.setItem('itemCarrito', numeroItem + 1)
+// //         alert("Agrego un estilo a su pedido")
+// //         document.querySelector('#boton_mostar span').textContent = numeroItem + 1
+// //     } else {
+// //         localStorage.setItem('itemCarrito', 1)
+// //         alert("este")
+// //         document.querySelector('#boton_mostrar span').textContent = 1
+// //     } 
+    
+// // } 
 
 
 

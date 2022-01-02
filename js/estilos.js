@@ -7,8 +7,12 @@ class Cerveza {
         this.precio = precio;
         this.stock = stock;
         this.img = img;
-        this.litros = litros;
         this.cant = 1;
+        this.litros = litros;
+    }
+    //metodos
+    subTotal () {
+        console.log(this.precio * this.litros)
     }
 }
 
@@ -16,5 +20,4 @@ class Cerveza {
 let estilos = [];
 //array para cargar subtotales de barril*precio
 let subTotales = [];
-//array litros pedidos 
-let litrosPedidos = [];
+
