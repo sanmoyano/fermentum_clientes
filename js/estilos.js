@@ -12,7 +12,7 @@ class Cerveza {
     }
     //metodos
     subTotal () {
-        return this.precio * this.litros
+        console.log(this.precio * this.litros)
     }
 }
 

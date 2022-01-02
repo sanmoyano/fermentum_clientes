@@ -40,11 +40,24 @@ btnMostrarPedido.addEventListener('click', () => {
             `
         });
 
-        mostrarTotal ();
+        llamarCarrito ();
+        // mostrarTotal ();
     };
 });
 
 //FUNCIONES
+//tengo que leer el array del carrito para poder sumar los subtotales
+const llamarCarrito = () => {
+    let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
+    arrayCarrito.forEach (estilo => {
+        console.log(typeof estilo)
+        console.log(estilo.subTotal())
+        
+        
+
+    })
+}
+
 //funcion sumar sub totales del array subTotales
 const sumaSubTotales = () => {
     const subTotales = JSON.parse(localStorage.getItem('subTotal'));//consulto todos los subTotales y los asigno a una variable

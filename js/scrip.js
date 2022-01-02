@@ -62,8 +62,6 @@ fetch('../JSON/productos.json')
             //llamo al boton agregar estilo y lo meto en una variable 
             let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
             btnAgregarCarrito.addEventListener ('click', () => {
-                carritoItems (); 
-                
                 //consultar si la cerveza del array se encuentra en el LS
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
@@ -72,32 +70,35 @@ fetch('../JSON/productos.json')
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                 };
+                carritoItems (); //funcion para sumar articulos
             });
         });
     });    
 
 //FUNCIONES
-//sumar items en boton "mostrar pedidos"
-const carritoItems = () => {
-    let estiloItems = localStorage.getItem('carritoItems');
-    estiloItems = parseInt(estiloItems); 
-    console.log(estiloItems)
-    if (estiloItems) {
-        alert("Seleccione un barril")
-        
-    } else if (estiloItems) {
-        localStorage.setItem('carritoItems', estiloItems + 1);
-        document.querySelector('#boton_mostrar span').textContent = estiloItems + 1;
-        alert("Agregaste un nuevo estilo al pedido");
 
-        
-    } else {
-        localStorage.setItem('carritoItems', 1)
-        alert("Agregaste un nuevo estilo al pedido");
-        document.querySelector('#boton_mostrar span').textContent = 1;
-    }
-}
 
+//sumar articulos en boton "mostrar pedidos"
+// const carritoItems = () => {
+//     let carritoLocal = JSON.parse(localStorage.getItem('carrito'))
+//     let numeroItem = JSON.parse(localStorage.getItem('itemCarrito'))
+//     console.log(carritoLocal)
+//     console.log(carritoLocal.find(cerveza => cerveza.nombre))
+// }
+// // const carritoItems = () => {
+// //     let numeroItem = JSON.parse(localStorage.getItem('itemCarrito'))
+// //     let findEstilo = estilos.find(cerveza => cerveza.nombre == estilo.nombre)
+// //     if (findEstilo) {
+// //         localStorage.setItem('itemCarrito', numeroItem + 1)
+// //         alert("Agrego un estilo a su pedido")
+// //         document.querySelector('#boton_mostar span').textContent = numeroItem + 1
+// //     } else {
+// //         localStorage.setItem('itemCarrito', 1)
+// //         alert("este")
+// //         document.querySelector('#boton_mostrar span').textContent = 1
+// //     } 
+    
+// // } 
 
 
 
