@@ -48,7 +48,7 @@ fetch('../JSON/productos.json')
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre)) {
                     let buscoEstilo = estilos.findIndex(cerveza => cerveza.nombre == cerveza.nombre);
                     estilos[buscoEstilo].litros = parseInt (e.target.value); // remplazo el valor viejo del array por uno nuevo.
-                    localStorage.setItem('carrito',JSON.stringify(estilos));// lo subo al array que ya existe
+                    estilos.push(estilo);
                 } else {
                     estilo['litros'] = parseInt(e.target.value);
                     estilos.push(estilo);
@@ -58,22 +58,27 @@ fetch('../JSON/productos.json')
         });
 
         //recorro el array de nuevo para agregar productos al carrito
-        dataEstilos.forEach((estilo, indice) => {
-            //llamo al boton agregar estilo y lo meto en una variable 
-            let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
-            btnAgregarCarrito.addEventListener ('click', () => {
-                //consultar si la cerveza del array se encuentra en el LS
-                if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
-                    let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
-                    estilos[buscoCervezaEnArrayEstilos]
-                } else { 
-                    let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
-                    estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
-                };
-                // carritoItems (); //funcion para sumar articulos
-            });
-        });
     });    
+    
+    estilos.forEach((estilo, indice) => {
+        //llamo al boton agregar estilo y lo meto en una variable 
+        let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
+        btnAgregarCarrito.addEventListener ('click', () => {
+            //consultar si la cerveza del array se encuentra en el LS
+            if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
+                let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
+                estilos[buscoCervezaEnArrayEstilos]
+                // localStorage.setItem('carrito', JSON.stringify(estilos));
+
+            } else { 
+                let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
+                estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
+                // localStorage.setItem('carrito', JSON.stringify(estilos));
+
+            };
+            // carritoItems (); //funcion para sumar articulos
+        });
+    });
 
 //FUNCIONES
 

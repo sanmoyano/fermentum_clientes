@@ -51,7 +51,7 @@ btnMostrarPedido.addEventListener('click', () => {
 const llamarCarrito = () => {
     let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
     arrayCarrito.forEach (estilo => {
-        console.log(estilo.litros)
+        console.log(estilo.subTotal)
     })
 }
 
