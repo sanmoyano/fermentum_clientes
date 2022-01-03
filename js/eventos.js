@@ -51,15 +51,9 @@ btnMostrarPedido.addEventListener('click', () => {
 const llamarCarrito = () => {
     let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
     let mapSubTot = arrayCarrito.map (estilo => {
-        return  estilo.precio * estilo.litros
+        return  estilo.precio * estilo.litros // me devuelve estos valores en un nuevo array
     })
-    console.log(mapSubTot)
-    //consultar el LS
-
-    localStorage.getItem('subTotal', JSON.stringify(subTotales))    
-    // subTotales.push(mapSubTot);
-        //si el array esta vacio le agrego los sub totales y si si ya esta, lo elimino y lo reemplazo por los nuevos valores.
-    
+    localStorage.setItem('subTotal', JSON.stringify(mapSubTot))// cargo los valores en el LS 
 }
 
 //funcion sumar sub totales del array subTotales
