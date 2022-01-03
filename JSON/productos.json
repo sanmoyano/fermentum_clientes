@@ -1,6 +1,6 @@
 [
     {
-        "id": "c1",
+        "id": 1,
         "nombre": "Golden Ale",
         "ibu": "16",
         "alcohol": "4.6",
@@ -10,7 +10,7 @@
         "litros": 0
     },
     {
-        "id": "c2",
+        "id": 2,
         "nombre": "Scotch",
         "ibu": "18",
         "alcohol": "4.6",
@@ -20,7 +20,7 @@
         "litros": 0
     },
     {
-        "id": "c3",
+        "id": 3,
         "nombre": "Strong Ale",
         "ibu": "24",
         "alcohol": "7.4",
@@ -30,7 +30,7 @@
         "litros": 0
     },
     {
-        "id": "c4",
+        "id": 4,
         "nombre": "APA",
         "ibu": "28",
         "alcohol": "5.5",
@@ -40,7 +40,7 @@
         "litros": 0
     },
     {
-        "id": "c5",
+        "id": 5,
         "nombre": "AAA",
         "ibu": "26",
         "alcohol": "5.5",
@@ -50,7 +50,7 @@
         "litros": 0
     },
     {
-        "id": "c6",
+        "id": 6,
         "nombre": "Session IPA",
         "ibu": "32",
         "alcohol": "4.0",
@@ -60,7 +60,7 @@
         "litros": 0
     },
     {
-        "id": "c7",
+        "id": 7,
         "nombre": "Caramel IPA",
         "ibu": "52",
         "alcohol": "6.2",
@@ -70,7 +70,7 @@
         "litros": 0
     },
     {
-        "id": "c8",
+        "id": 8,
         "nombre": "American IPA",
         "ibu": "54",
         "alcohol": "6.4",
@@ -80,7 +80,7 @@
         "litros": 0
     },
     {
-        "id": "c9",
+        "id": 9,
         "nombre": "Juicy IPA",
         "ibu": "20",
         "alcohol": "6.6",

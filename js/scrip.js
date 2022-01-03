@@ -52,6 +52,7 @@ fetch('../JSON/productos.json')
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                     localStorage.setItem('carrito', JSON.stringify(estilos));
+                    alert("Seleccione un barril")
                 };
             }); //se agrega con la propiedad litros en 0 
         });

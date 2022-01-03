@@ -50,19 +50,16 @@ btnMostrarPedido.addEventListener('click', () => {
 //tengo que leer el array del carrito para poder sumar los subtotales
 const llamarCarrito = () => {
     let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
-    console.log(arrayCarrito)
-    arrayCarrito.forEach (estilo => {
-        let subTot = estilo.precio*estilo.litros
-        subTotales.push(subTot);
-        localStorage.setItem('subTotal', JSON.stringify(subTotales))
-        
-        // console.log(estilo.subTotal()) //no llama al metodo del objeto lo muestra undefined para enviar los sub totales al array subtota
-        // console.log(estilo.precio*estilo.litros) 
-        // console.log(estilo.litros) 
-        // console.log(estilo.mostrarDatos())
-
-        //si el array esta vacio le agrego los sub totales y si si ya esta, lo elimino y lo reemplazo por los nuevos valores.
+    let mapSubTot = arrayCarrito.map (estilo => {
+        return  estilo.precio * estilo.litros
     })
+    console.log(mapSubTot)
+    //consultar el LS
+
+    localStorage.getItem('subTotal', JSON.stringify(subTotales))    
+    // subTotales.push(mapSubTot);
+        //si el array esta vacio le agrego los sub totales y si si ya esta, lo elimino y lo reemplazo por los nuevos valores.
+    
 }
 
 //funcion sumar sub totales del array subTotales
