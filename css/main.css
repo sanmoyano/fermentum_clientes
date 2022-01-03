@@ -35,6 +35,10 @@
     #canvas_carrito #total_carrito h4 {
       margin-top: 12px;
       margin-bottom: 3px; }
+  #canvas_carrito #vaciar_carrito {
+    margin: 12px;
+    margin-top: 0px;
+    width: 40%; }
   #canvas_carrito #finalizar_compra {
     margin: 12px;
     margin-top: 0px; }

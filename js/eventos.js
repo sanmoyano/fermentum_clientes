@@ -3,8 +3,8 @@ let btnMostrarPedido = document.getElementById ('boton_mostrar'); //boton "Mostr
 let divCanvasCarrito = document.getElementById ('producto_carrito'); //seccion antes de las cards del carrito
 let divTotalCarrito = document.getElementById ('total_carrito'); //seccion donde esta el boton "Calcular pedido"
 let btnCalcTotal = document.getElementById ('boton_total'); //boton "Calcular pedido"
-let btnFinalizar = document.getElementById('finalizar_compra'); //boton "finalizar compra"
-let acumSubTot = 0
+let btnVaciar = document.getElementById('vaciar_carrito'); //boton "Vaciar carrito"
+let btnFinalizar = document.getElementById('finalizar_compra'); //boton "Finalizar"
 
 //MOSTRAR PEDIDO
 // btnMostrarPedido.addEventListener ('click', () => console.log("click"))
@@ -40,10 +40,10 @@ btnMostrarPedido.addEventListener('click', () => {
             </div>
             `
         });
-
-        llamarCarrito ();
-        mostrarTotal ();
     };
+
+    mostrarTotal ();
+    llamarCarrito ();
 });
 
 //FUNCIONES
@@ -53,7 +53,7 @@ const llamarCarrito = () => {
     let mapSubTot = arrayCarrito.map (estilo => {
         return  estilo.precio * estilo.litros // me devuelve estos valores en un nuevo array
     })
-    localStorage.setItem('subTotal', JSON.stringify(mapSubTot))// cargo los valores en el LS 
+    localStorage.setItem('subTotal', JSON.stringify(mapSubTot))// cargo el array en el LS
 }
 
 //funcion sumar sub totales del array subTotales
@@ -63,9 +63,9 @@ const sumaSubTotales = () => {
     return subTotales.reduce(suma);//me reduce todos los subTotales del array sumados a un solo valor
 };
 
+
 //funcion mostrar total 
 const mostrarTotal = () => {
-    // btnCalcTotal.addEventListener('click', () => console.log("clck"))
     btnCalcTotal.addEventListener('click', () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
         let h4 = document.createElement("h4");
@@ -80,16 +80,23 @@ const mostrarTotal = () => {
         }
     });
 };
-
-// btnFinalizar.addEventListener('click', () => console.log("click"));
-btnFinalizar.addEventListener ('click', () => {
+//funcion eleminar del carrito todo
+function eliminar () {
     divCanvasCarrito.innerHTML = `
         <h6>No se realizo ningún pedido aún.</h6>`
     localStorage.clear('carrito, subTotal, carritoItems');
-    alert("Gracias por su compra");
     $(() => {
         $('#total_carrito').empty()
-    })
+    });
+}
+
+btnVaciar.addEventListener ('click', () => {
+    eliminar()
+});
+
+btnFinalizar.addEventListener ('click', () => {
+    eliminar()
+    alert("Gracias por su compra")
 });
 
 

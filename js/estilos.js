@@ -10,13 +10,6 @@ class Cerveza {
         this.cant = 1;
         this.litros = litros;
     }
-    //metodos
-    subTotal () {
-        return this.precio * this.litros
-    }
-    mostrarDatos (){
-        return this.nombre
-    }
 }
 
 //array para guardar los productos
