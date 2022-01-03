@@ -30,7 +30,6 @@ btnMostrarPedido.addEventListener('click', () => {
                         <div class="card-body">
                             <div class="titulo-estilo">
                                 <h5 class="card-title">${estilo.nombre}</h5>    
-                                <button id="eliminar_carrito${indice}" class="btn btn-danger" style="margin: 10px;"><i class="fas fa-times-circle"></i></button>
                             </div>
                                 <p class="card-title">$${estilo.precio}</p>
                                 <p class="card-title" id="valor_barril">Barril de ${estilo.litros} litros</p>
@@ -41,20 +40,35 @@ btnMostrarPedido.addEventListener('click', () => {
             `
         });
     };
-
+    
     mostrarTotal ();
     llamarCarrito ();
+});
+
+//EVENTOS
+//vaciar carrito
+btnVaciar.addEventListener ('click', () => {
+    eliminar();
+});
+//finalizar compra
+btnFinalizar.addEventListener ('click', () => {
+    eliminar();
+    alert("Gracias por su compra");
 });
 
 //FUNCIONES
 //tengo que leer el array del carrito para poder sumar los subtotales
 const llamarCarrito = () => {
-    let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
-    let mapSubTot = arrayCarrito.map (estilo => {
-        return  estilo.precio * estilo.litros // me devuelve estos valores en un nuevo array
-    })
-    localStorage.setItem('subTotal', JSON.stringify(mapSubTot))// cargo el array en el LS
-}
+    let arrayCarrito = JSON.parse(localStorage.getItem('carrito'));
+    if(arrayCarrito == null ) {
+        //capturo el null y no hago nada
+    } else {
+        let mapSubTot = arrayCarrito.map (estilo => {
+            return  estilo.precio * estilo.litros // me devuelve estos valores en un nuevo array
+        });
+        localStorage.setItem('subTotal', JSON.stringify(mapSubTot));// cargo el array en el LS
+    }
+};
 
 //funcion sumar sub totales del array subTotales
 const sumaSubTotales = () => {
@@ -70,7 +84,7 @@ const mostrarTotal = () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
         let h4 = document.createElement("h4");
         if (subTotales == null) {
-            alert("Seleccione barriles")
+            alert("No realizo su pedido")
         } else {
             h4.innerHTML += `
             <h4 id="h4_total"> Total: $${sumaSubTotales()} </h4>
@@ -88,15 +102,7 @@ function eliminar () {
     $(() => {
         $('#total_carrito').empty()
     });
-}
+};
 
-btnVaciar.addEventListener ('click', () => {
-    eliminar()
-});
-
-btnFinalizar.addEventListener ('click', () => {
-    eliminar()
-    alert("Gracias por su compra")
-});
 
 
