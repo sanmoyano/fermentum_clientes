@@ -55,6 +55,7 @@ const llamarCarrito = () => {
         let subTot = estilo.precio*estilo.litros
         subTotales.push(subTot);
         localStorage.setItem('subTotal', JSON.stringify(subTotales))
+        
         // console.log(estilo.subTotal()) //no llama al metodo del objeto lo muestra undefined para enviar los sub totales al array subtota
         // console.log(estilo.precio*estilo.litros) 
         // console.log(estilo.litros) 
