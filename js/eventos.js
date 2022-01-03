@@ -42,7 +42,7 @@ btnMostrarPedido.addEventListener('click', () => {
         });
 
         llamarCarrito ();
-        // mostrarTotal ();
+        mostrarTotal ();
     };
 });
 
@@ -50,8 +50,17 @@ btnMostrarPedido.addEventListener('click', () => {
 //tengo que leer el array del carrito para poder sumar los subtotales
 const llamarCarrito = () => {
     let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
+    console.log(arrayCarrito)
     arrayCarrito.forEach (estilo => {
-        console.log(estilo.subTotal) //no llama al metodo del objeto lo muestra undefined para enviar los sub totales al array subtotal 
+        let subTot = estilo.precio*estilo.litros
+        subTotales.push(subTot);
+        localStorage.setItem('subTotal', JSON.stringify(subTotales))
+        // console.log(estilo.subTotal()) //no llama al metodo del objeto lo muestra undefined para enviar los sub totales al array subtota
+        // console.log(estilo.precio*estilo.litros) 
+        // console.log(estilo.litros) 
+        // console.log(estilo.mostrarDatos())
+
+        //si el array esta vacio le agrego los sub totales y si si ya esta, lo elimino y lo reemplazo por los nuevos valores.
     })
 }
 

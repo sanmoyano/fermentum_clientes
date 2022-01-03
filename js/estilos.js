@@ -12,14 +12,15 @@ class Cerveza {
     }
     //metodos
     subTotal () {
-        console.log(this.precio * this.litros)
+        return this.precio * this.litros
+    }
+    mostrarDatos (){
+        return this.nombre
     }
 }
 
 //array para guardar los productos
 let estilos = [];
-//estilos en carrito
-let carrito = [];
 //array para cargar subtotales de barril*precio
 let subTotales = [];
 

@@ -24,7 +24,7 @@ fetch('../JSON/productos.json')
                     <div class="dropdown">
                         <label>
                             <select id="select_barril${indice}" class="btn btn-secondary" style="margin-bottom: 12px;">
-                                <option value="none">Selec. barril</option>
+                                <option value="none">Selecionar barril</option>
                                     <option id="select_litros" value="10">10 litros</option>
                                     <option id="select_litros" value="20">20 litros</option>
                                     <option id="select_litros" value="30">30 litros</option>
@@ -48,13 +48,12 @@ fetch('../JSON/productos.json')
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
                     estilos[buscoCervezaEnArrayEstilos].cant 
                     localStorage.setItem('carrito', JSON.stringify(estilos));
-                    alert("paso 2")
                 } else { 
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                     localStorage.setItem('carrito', JSON.stringify(estilos));
                 };
-            });
+            }); //se agrega con la propiedad litros en 0 
         });
         
         //recorro el array para seleccionar el barril
@@ -72,7 +71,7 @@ fetch('../JSON/productos.json')
                     estilo['litros'] = parseInt(e.target.value);
                     estilos.push(estilo);
                     localStorage.setItem('carrito', JSON.stringify(estilos));
-                    alert(`Agrego ${estilo.litros} litros de ${estilo.nombre} `)// a prueba de error, si no se agrega el estilo antes se agrega al seleccionar el barril y tambien se modifica
+                    alert(`Agrego ${estilo.litros} litros de ${estilo.nombre} `)// a prueba de error, si no se agrega el estilo antes se agrega al seleccionar el barril y tambien se modifica la cantidad de litros
                 }
             });
         });
