@@ -51,7 +51,7 @@ btnMostrarPedido.addEventListener('click', () => {
 const llamarCarrito = () => {
     let arrayCarrito = JSON.parse(localStorage.getItem('carrito'))
     arrayCarrito.forEach (estilo => {
-        console.log(estilo.subTotal)
+        console.log(estilo.subTotal) //no llama al metodo del objeto lo muestra undefined para enviar los sub totales al array subtotal 
     })
 }
 

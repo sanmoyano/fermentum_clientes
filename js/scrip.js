@@ -16,69 +16,67 @@ fetch('../JSON/productos.json')
                     <h4 class="card-text">Alcohol: ${estilo.alcohol}</h4>
                     <h4 class="card-text">Precio/L: $${estilo.precio}</h4>
                 </div>
+                <button id="agregar_carrito${indice}" class="btn btn-warning" style="margin-top: 10px;">Agregar estilo</button>
+
 
                 <!-- selec barril -->
-                            <div id="litros_pedidos">
-                                <div class="dropdown">
-                                    <label>
-                                        <select id="select_barril${indice}" class="btn btn-secondary" style="margin-top: 12px;">
-                                            <option value="none">Selec. barril</option>
-                                            <option id="select_litros" value="10">10 litros</option>
-                                            <option id="select_litros" value="20">20 litros</option>
-                                            <option id="select_litros" value="30">30 litros</option>
-                                            <option id="select_litros" value="50">50 litros</option>
-                                        </select>
-                                    </label>
-                                    <!-- eliminar del carrito  -->
-                                </div>
-                            </div>
-                <button id="agregar_carrito${indice}" class="btn btn-warning" style="margin-top: 10px;">Agregar estilo</button>
+                <div id="litros_pedidos">
+                    <div class="dropdown">
+                        <label>
+                            <select id="select_barril${indice}" class="btn btn-secondary" style="margin-bottom: 12px;">
+                                <option value="none">Selec. barril</option>
+                                    <option id="select_litros" value="10">10 litros</option>
+                                    <option id="select_litros" value="20">20 litros</option>
+                                    <option id="select_litros" value="30">30 litros</option>
+                                    <option id="select_litros" value="50">50 litros</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
             </div>
             `
             
         });
         
-        //recorro el array para seleccionar el estilo
+        //recorro el array de nuevo para agregar productos al carrito
         dataEstilos.forEach((estilo, indice) => {
-            let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton y lo asigno a una variable    
+            //llamo al boton agregar estilo y lo meto en una variable 
+            let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
+            btnAgregarCarrito.addEventListener ('click', () => {
+                //consultar si la cerveza del array se encuentra en el LS
+                if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
+                    let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
+                    estilos[buscoCervezaEnArrayEstilos].cant 
+                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                    alert("paso 2")
+                } else { 
+                    let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
+                    estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
+                    localStorage.setItem('carrito', JSON.stringify(estilos));
+                };
+            });
+        });
+        
+        //recorro el array para seleccionar el barril
+        dataEstilos.forEach((estilo, indice) => {
+            let dropDownSelectBarril = document.getElementById(`select_barril${indice}`); //llamo al boton
             dropDownSelectBarril.addEventListener ('change', (e) => {
                 e.preventDefault()
                 estilo['litros'] = parseInt(e.target.value);
-                //consultar si la cerveza del array se encuentra en el LS
                 if (estilos.find(cerveza => cerveza.nombre == estilo.nombre)) {
-                    let buscoEstilo = estilos.findIndex(cerveza => cerveza.nombre == cerveza.nombre);
+                    let buscoEstilo = estilos.findIndex(cerveza => cerveza.nombre == estilo.nombre);
                     estilos[buscoEstilo].litros = parseInt (e.target.value); // remplazo el valor viejo del array por uno nuevo.
-                    estilos.push(estilo);
+                    localStorage.setItem('carrito',JSON.stringify(estilos));// lo subo al array que ya existe
+                    alert(`Agrego ${estilo.litros} litros de ${estilo.nombre} `)
                 } else {
                     estilo['litros'] = parseInt(e.target.value);
                     estilos.push(estilo);
                     localStorage.setItem('carrito', JSON.stringify(estilos));
+                    alert(`Agrego ${estilo.litros} litros de ${estilo.nombre} `)// a prueba de error, si no se agrega el estilo antes se agrega al seleccionar el barril y tambien se modifica
                 }
             });
         });
-
-        //recorro el array de nuevo para agregar productos al carrito
     });    
-    
-    estilos.forEach((estilo, indice) => {
-        //llamo al boton agregar estilo y lo meto en una variable 
-        let btnAgregarCarrito = document.getElementById(`agregar_carrito${indice}`);
-        btnAgregarCarrito.addEventListener ('click', () => {
-            //consultar si la cerveza del array se encuentra en el LS
-            if (estilos.find(cerveza => cerveza.nombre == estilo.nombre )) {
-                let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
-                estilos[buscoCervezaEnArrayEstilos]
-                // localStorage.setItem('carrito', JSON.stringify(estilos));
-
-            } else { 
-                let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
-                estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
-                // localStorage.setItem('carrito', JSON.stringify(estilos));
-
-            };
-            // carritoItems (); //funcion para sumar articulos
-        });
-    });
 
 //FUNCIONES
 

@@ -18,6 +18,8 @@ class Cerveza {
 
 //array para guardar los productos
 let estilos = [];
+//estilos en carrito
+let carrito = [];
 //array para cargar subtotales de barril*precio
 let subTotales = [];
 
