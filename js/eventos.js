@@ -40,7 +40,6 @@ btnMostrarPedido.addEventListener('click', () => {
         });
     };
     
-    mostrarTotal ();
     llamarCarrito ();
 });
 
@@ -54,6 +53,7 @@ btnFinalizar.addEventListener ('click', () => {
     eliminar();
     alert("Gracias por su compra");
 });
+
 
 //FUNCIONES
 //tengo que leer el array del carrito para poder sumar los subtotales
@@ -77,7 +77,7 @@ const sumaSubTotales = () => {
 };
 
 
-//funcion mostrar total // hacer con otro for each
+//funcion mostrar total
 const mostrarTotal = () => {
     btnCalcTotal.addEventListener('click', () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
@@ -90,9 +90,12 @@ const mostrarTotal = () => {
             <p> Los precios incluyen IVA e impuestos al acohol. </p>
             `
             divTotalCarrito.appendChild(h4);
+
         }
     });
 };
+mostrarTotal ();
+
 //funcion eleminar del carrito todo
 function eliminar () {
     divCanvasCarrito.innerHTML = `
