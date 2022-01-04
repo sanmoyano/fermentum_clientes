@@ -81,28 +81,6 @@ fetch('../JSON/productos.json')
 //FUNCIONES
 
 
-//sumar articulos en boton "mostrar pedidos"
-// const carritoItems = () => {
-//     let carritoLocal = JSON.parse(localStorage.getItem('carrito'))
-//     let numeroItem = JSON.parse(localStorage.getItem('itemCarrito'))
-//     console.log(carritoLocal)
-//     console.log(carritoLocal.find(cerveza => cerveza.nombre))
-// }
-// // const carritoItems = () => {
-// //     let numeroItem = JSON.parse(localStorage.getItem('itemCarrito'))
-// //     let findEstilo = estilos.find(cerveza => cerveza.nombre == estilo.nombre)
-// //     if (findEstilo) {
-// //         localStorage.setItem('itemCarrito', numeroItem + 1)
-// //         alert("Agrego un estilo a su pedido")
-// //         document.querySelector('#boton_mostar span').textContent = numeroItem + 1
-// //     } else {
-// //         localStorage.setItem('itemCarrito', 1)
-// //         alert("este")
-// //         document.querySelector('#boton_mostrar span').textContent = 1
-// //     } 
-    
-// // } 
-
 
 
 

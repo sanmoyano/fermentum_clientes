@@ -7,7 +7,6 @@ let btnVaciar = document.getElementById('vaciar_carrito'); //boton "Vaciar carri
 let btnFinalizar = document.getElementById('finalizar_compra'); //boton "Finalizar"
 
 //MOSTRAR PEDIDO
-// btnMostrarPedido.addEventListener ('click', () => console.log("click"))
 btnMostrarPedido.addEventListener('click', () => { 
     let cervezasEnStorage = JSON.parse(localStorage.getItem('carrito')); //consulto el carrito en LS
     if (cervezasEnStorage == null) {
@@ -61,10 +60,10 @@ btnFinalizar.addEventListener ('click', () => {
 const llamarCarrito = () => {
     let arrayCarrito = JSON.parse(localStorage.getItem('carrito'));
     if(arrayCarrito == null ) {
-        //capturo el null y no hago nada
+        //capturo el null y no hago nada.
     } else {
         let mapSubTot = arrayCarrito.map (estilo => {
-            return  estilo.precio * estilo.litros // me devuelve estos valores en un nuevo array
+            return  estilo.precio * estilo.litros; // me devuelve estos valores en un nuevo array
         });
         localStorage.setItem('subTotal', JSON.stringify(mapSubTot));// cargo el array en el LS
     }
@@ -78,7 +77,7 @@ const sumaSubTotales = () => {
 };
 
 
-//funcion mostrar total 
+//funcion mostrar total // hacer con otro for each
 const mostrarTotal = () => {
     btnCalcTotal.addEventListener('click', () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
