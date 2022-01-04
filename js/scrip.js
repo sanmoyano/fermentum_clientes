@@ -48,11 +48,13 @@ fetch('../JSON/productos.json')
                     let buscoCervezaEnArrayEstilos = estilos.findIndex (cerveza => cerveza.nombre == estilo.nombre);
                     estilos[buscoCervezaEnArrayEstilos].cant 
                     localStorage.setItem('carrito', JSON.stringify(estilos));
+                    
                 } else { 
                     let cerveza = new Cerveza (estilo.id, estilo.nombre, estilo.ibu, estilo.alcohol, estilo.precio, estilo.stock, estilo.img, estilo.litros); //si la cerveza no esta, la creo
                     estilos.push(cerveza); // y hago el push de la cerveza al array de estilos
                     localStorage.setItem('carrito', JSON.stringify(estilos));
                     alert("Seleccione un barril")
+
                 };
             }); //se agrega con la propiedad litros en 0 
         });
@@ -73,12 +75,34 @@ fetch('../JSON/productos.json')
                     estilos.push(estilo);
                     localStorage.setItem('carrito', JSON.stringify(estilos));
                     alert(`Agrego ${estilo.litros} litros de ${estilo.nombre} `)// a prueba de error, si no se agrega el estilo antes se agrega al seleccionar el barril y tambien se modifica la cantidad de litros
+                    itemsCarrito ()
                 }
             });
         });
     });    
 
 //FUNCIONES
+//cargar items del ls cuando hago refresh en la pagina
+function itemsReload () { 
+    let itemEstilos = localStorage.getItem('items');
+    if (itemEstilos) {
+        document.querySelector('#boton_mostrar span').textContent = itemEstilos;
+    }
+}
+//sumar items en "Mostrar items" cada vez que se agregar un producto 
+function itemsCarrito () {
+    let itemEstilos = localStorage.getItem('items');
+    itemEstilos = parseInt(itemEstilos)
+    if (itemEstilos) {
+        localStorage.setItem('items', itemEstilos + 1);
+        document.querySelector('#boton_mostrar span').textContent = itemEstilos + 1;
+    } else {
+        localStorage.setItem('items', 1);
+        document.querySelector('#boton_mostrar span').textContent = 1;
+    }
+}
+
+itemsReload ()
 
 
 

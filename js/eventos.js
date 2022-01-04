@@ -101,7 +101,7 @@ mostrarTotal ();
 function eliminar () {
     divCanvasCarrito.innerHTML = `
         <h6>No se realizo ningún pedido aún.</h6>`
-    localStorage.clear('carrito, subTotal, carritoItems');
+    localStorage.clear('carrito, subTotal, items');
     $(() => {
         $('#total_carrito').empty();
     });
