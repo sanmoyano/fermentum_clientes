@@ -83,8 +83,9 @@ const mostrarTotal = () => {
         const subTotales = JSON.parse(localStorage.getItem('subTotal'));
         let h4 = document.createElement("h4");
         if (subTotales == null) {
-            alert("No realizo su pedido")
+            alert("No realizo su pedido");
         } else {
+            divTotalCarrito.innerHTML = "";
             h4.innerHTML += `
             <h4 id="h4_total"> Total: $${sumaSubTotales()} </h4>
             <p> Los precios incluyen IVA e impuestos al acohol. </p>
@@ -102,7 +103,7 @@ function eliminar () {
         <h6>No se realizo ningún pedido aún.</h6>`
     localStorage.clear('carrito, subTotal, carritoItems');
     $(() => {
-        $('#total_carrito').empty()
+        $('#total_carrito').empty();
     });
 };
 
