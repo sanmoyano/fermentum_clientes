@@ -87,20 +87,20 @@ function itemsReload () {
     let itemEstilos = localStorage.getItem('items');
     if (itemEstilos) {
         document.querySelector('#boton_mostrar span').textContent = itemEstilos;
-    }
-}
+    };
+};
 //sumar items en "Mostrar items" cada vez que se agregar un producto 
 function itemsCarrito () {
     let itemEstilos = localStorage.getItem('items');
-    itemEstilos = parseInt(itemEstilos)
+    itemEstilos = parseInt(itemEstilos);
     if (itemEstilos) {
         localStorage.setItem('items', itemEstilos + 1);
         document.querySelector('#boton_mostrar span').textContent = itemEstilos + 1;
     } else {
         localStorage.setItem('items', 1);
         document.querySelector('#boton_mostrar span').textContent = 1;
-    }
-}
+    };
+};
 
 itemsReload ()
 
